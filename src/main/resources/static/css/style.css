@@ -103,6 +103,10 @@ body{
     color: var(--black);
 }
 
+.ts-dark-blue {
+    color: var(--dark-blue);
+}
+
 .ts-dark-gray {
     color: var(--dark-gray);
 }

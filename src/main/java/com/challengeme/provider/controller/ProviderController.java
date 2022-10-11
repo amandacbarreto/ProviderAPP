@@ -9,6 +9,12 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping()
 public class ProviderController {
 
+    @GetMapping("")
+    public ModelAndView showLoginForm() {
+        ModelAndView mv = new ModelAndView("login");
+        return mv;
+    }
+
     @GetMapping("/cadastro")
     public ModelAndView showRegistrationForm() {
         ModelAndView mv = new ModelAndView("registration");
