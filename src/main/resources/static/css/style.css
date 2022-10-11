@@ -1,0 +1,171 @@
+html {
+    font-size: 10px;
+    height: 100%;
+    width: 100%;
+}
+
+body{
+    display: flex;
+}
+
+/*  Colors */
+
+:root {
+    --black: #000000;
+    --dark-blue: #001940;
+    --light-blue: #ccc7ff;
+    --dark-gray: #6C6C6C;
+    --light-gray: #CDCDCD;
+    --white: #FFFFFF;
+}
+
+/*  Fonts */
+
+
+@font-face {
+    font-family: Urbanist-Black;
+    src: url(../font/Urbanist-Black.ttf);
+}
+
+@font-face {
+    font-family: Urbanist-Bold;
+    src: url(../font/Urbanist-Bold.ttf);
+}
+
+@font-face {
+    font-family: Urbanist-Light;
+    src: url(../font/Urbanist-Light.ttf);
+}
+
+@font-face {
+    font-family: Urbanist-Medium;
+    src: url(../font/Urbanist-Medium.ttf);
+}
+
+@font-face {
+    font-family: Urbanist-Thin;
+    src: url(../font/Urbanist-Thin.ttf);
+}
+
+/*  Text Styles */
+
+.ts-32-black {
+    font-family: "Urbanist-Black";
+    font-size: 3.2rem;
+}
+
+.ts-20-black {
+    font-family: "Urbanist-Black";
+    font-size: 2rem;
+}
+
+.ts-24-bold {
+    font-family: "Urbanist-Bold";
+    font-size: 2.4rem;
+}
+
+.ts-18-medium {
+    font-family: "Urbanist-Medium";
+    font-size: 1.8rem;
+}
+
+.ts-14-medium {
+    font-family: "Urbanist-Medium";
+    font-size: 1.4rem;
+}
+
+.ts-12-medium {
+    font-family: "Urbanist-Medium";
+    font-size: 1.2rem;
+}
+
+.ts-18-light {
+    font-family: "Urbanist-Light";
+    font-size: 1.4rem;
+}
+
+.ts-14-light {
+    font-family: "Urbanist-Light";
+    font-size: 1.4rem;
+}
+
+.ts-12-light {
+    font-family: "Urbanist-Light";
+    font-size: 1.2rem;
+}
+
+.ts-14-thin {
+    font-family: "Urbanist-Thin";
+    font-size: 1.4rem;
+}
+
+.ts-black {
+    color: var(--black);
+}
+
+.ts-dark-gray {
+    color: var(--dark-gray);
+}
+
+.ts-light-gray {
+    color: var(--light-gray);
+}
+
+.ts-white {
+    color: var(--white);
+}
+
+/*  Register */
+.landing-page{
+    background: linear-gradient(116.61deg, var(--black) -3.65%, var(--dark-blue) 105.87%);
+    display: flex;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-window{
+    background-color: var(--white);
+    border-radius: 2rem;
+    width: 48rem;
+    height: 54rem;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    padding: 2.8rem;
+    text-align: center;
+}
+
+.login-window form{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: left;
+}
+
+.login-window form label{
+    margin-bottom: .4rem;
+}
+
+.login-window form input{
+    margin-bottom: .8rem;
+}
+
+.login-window form input{
+    height: 4rem;
+    border: 1px solid var(--light-gray);
+    border-radius: 0.4rem;
+}
+
+.login-window form input[type=button],
+.login-window form input[type=submit],
+.login-window form input[type=reset] {
+    margin-top: .8rem;
+    background-color: var(--dark-blue);
+}
+
+
+
+
