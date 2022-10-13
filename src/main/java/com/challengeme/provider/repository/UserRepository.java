@@ -1,6 +1,6 @@
-package com.challenge.challenge.repository;
+package com.challengeme.provider.repository;
 
-import com.challenge.challenge.entity.User;
+import com.challengeme.provider.entity.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface UserRepository  extends MongoRepository<User, Long> {

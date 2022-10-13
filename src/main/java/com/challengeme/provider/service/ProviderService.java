@@ -1,7 +1,7 @@
-package com.challenge.challenge.service;
+package com.challengeme.provider.service;
 
-import com.challenge.challenge.entity.Provider;
-import com.challenge.challenge.repository.ProviderRepository;
+import com.challengeme.provider.entity.Provider;
+import com.challengeme.provider.repository.ProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

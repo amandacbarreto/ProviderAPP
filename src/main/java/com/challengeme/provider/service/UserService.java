@@ -1,13 +1,12 @@
-package com.challenge.challenge.service;
+package com.challengeme.provider.service;
 
-import com.challenge.challenge.dto.UserDTO;
-import com.challenge.challenge.entity.User;
-import com.challenge.challenge.repository.UserRepository;
+import com.challengeme.provider.dto.UserDTO;
+import com.challengeme.provider.entity.User;
+import com.challengeme.provider.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class UserService {
