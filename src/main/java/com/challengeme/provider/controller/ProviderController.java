@@ -26,4 +26,10 @@ public class ProviderController {
         ModelAndView mv = new ModelAndView("list-provider");
         return mv;
     }
+
+    @GetMapping("/fornecedores/cadastrar")
+    public ModelAndView showProviderRegister() {
+        ModelAndView mv = new ModelAndView("add-provider");
+        return mv;
+    }
 }

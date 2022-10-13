@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>Home</title>
+</head>
+<body class="logged">
+    <header>
+        <button class="btn-menu ts-18-medium ts-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+            <svg xmlns="http://www.w3.org/2000/svg" height="28" width="28" viewBox="0 0 48 48" fill="#FFF"><path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z"/></svg>
+            <span>MENU</span>
+        </button>
+    </header>
+    <div class="offcanvas offcanvas-start ts-white" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+    <div class="offcanvas-header">
+        <h2 class="offcanvas-title ts-32-black" id="offcanvasLeftLabel">Desafio 3</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body ts-18-medium">
+        <div class="user-info">
+            <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" fill="#FFF"><path d="M11.15 35.1q3.15-1.95 6.2-2.975Q20.4 31.1 24 31.1q3.6 0 6.7 1.025t6.2 2.975q2.2-2.7 3.1-5.4.9-2.7.9-5.7 0-7.2-4.85-12.05Q31.2 7.1 24 7.1q-7.2 0-12.05 4.85Q7.1 16.8 7.1 24q0 3 .925 5.7t3.125 5.4ZM24 25.6q-2.95 0-4.925-2-1.975-2-1.975-4.95 0-2.9 2-4.9 2-2 4.9-2 2.95 0 4.925 2 1.975 2 1.975 4.95 0 2.9-2 4.9-2 2-4.9 2Zm0 18.7q-4.25 0-7.95-1.6T9.6 38.325q-2.75-2.775-4.325-6.45Q3.7 28.2 3.7 24q0-4.25 1.6-7.925T9.675 9.65q2.775-2.75 6.45-4.35Q19.8 3.7 24.05 3.7q4.2 0 7.875 1.6t6.425 4.35q2.75 2.75 4.35 6.45 1.6 3.7 1.6 7.9t-1.6 7.875q-1.6 3.675-4.35 6.45Q35.6 41.1 31.9 42.7T24 44.3Z"/></svg>
+            <h1 class="ts-20-black">Amanda Barreto</h1>
+        </div>
+        <li>
+            <ul>
+                <a href="/fornecedores">Listar fornecedores</a>
+            </ul>
+            <ul>
+                <a href="/fornecedores/cadastrar">Novo fornecedor</a>
+            </ul>
+            <ul class="user-logout">
+                <a href="/">Sair</a>
+            </ul>
+        </li>
+    </div>
+</div>
+
+    <section class="provider-register">
+        <div class="section-header">
+            <h1 class="ts-24-bold ts-black">Cadastro de fornecedor</h1>
+        </div>
+
+        <form class="container" action="#" method="post">
+
+            <h2 class="ts-20-black ts-dark-gray"> Dados do fornecedor </h2>
+            <hr>
+
+            <div class="row">
+                <div class="field col">
+                    <label class="ts-18-medium ts-dark-gray" for="name">Nome do fornecedor</label>
+                    <input class="ts-14-medium" type="text" id="name" placeholder="Nome do fornecedor">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field col-lg-6">
+                    <label class="ts-18-medium ts-dark-gray" for="name">Tipo de fornecedor</label>
+                    <div class="provider-type ts-18-medium ts-dark-gray">
+                        <input type="radio" id="legalPerson" name="personType" value="LEGAL_PERSON">
+                        <label for="legalPerson">Pessoa física</label><br>
+                        <input type="radio" id="naturalPerson" name="personType" value="NATURAL_PERSON">
+                        <label for="naturalPerson">Pessoa jurídica</label>
+                    </div>
+                </div>
+
+                <div class="field col-lg-6">
+                    <label class="ts-18-medium ts-dark-gray" for="cpfOrCnpj">CPF</label>
+                    <input class="ts-14-medium" type="text" id="cpfOrCnpj" placeholder="000.000.000-00">
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="field col">
+                    <label class="ts-18-medium ts-dark-gray" for="activityDescription">Descrição das atividades</label>
+
+                    <textarea id="activityDescription" name="activityDescription" rows="4" cols="50">
+                    </textarea>
+                </div>
+            </div>
+
+            <h2 class="ts-20-black ts-dark-gray"> Contato principal </h2>
+            <hr>
+
+            <div class="row">
+                <div class="field col-lg-6">
+                    <label class="ts-18-medium ts-dark-gray" for="nameContact">Nome do contato</label>
+                    <input class="ts-14-medium" type="text" id="nameContact" placeholder="Nome do contato principal">
+                </div>
+
+                <div class="field col-lg-6">
+                    <label class="ts-18-medium ts-dark-gray" for="emailContact">E-mail do contato</label>
+                    <input class="ts-14-medium" type="text" id="emailContact" placeholder="xxxxx@email.com">
+                </div>
+            </div>
+
+            <h2 class="ts-20-black ts-dark-gray"> Telefone </h2>
+            <hr>
+
+            <table class="phone-add-table">
+                <thead>
+                <tr class="ts-18-medium ts-dark-gray">
+                    <th>Id</th>
+                    <th>Telefone</th>
+                    <th>
+                        <button class="btn-phone ts-18-medium ts-white" type="button">
+                            Adicionar telefone
+                        </button>
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="ts-24-light ts-black">
+                    <td>1</td>
+                    <td>
+                        <input class="ts-14-medium phone-input" type="text" id="phone" placeholder="(00) 00000-0000">
+                    </td>
+                    <td>
+                        <button class="btn-phone ts-18-medium ts-white" type="button">
+                            Remover telefone
+                        </button>
+                    </td>
+                </tr>
+            </table>
+
+            <h2 class="ts-20-black ts-dark-gray"> Endereço </h2>
+            <hr>
+
+            <div class="row">
+                <div class="field col-lg-3">
+                    <label class="ts-18-medium ts-dark-gray" for="cep">CEP</label>
+                    <div class="cep-row">
+                        <input class="ts-14-medium" type="text" id="cep" placeholder="00.000-000">
+                        <button class="btn-phone ts-18-medium ts-white" type="button">
+                            Buscar
+                        </button>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="field col-lg-8">
+                    <label class="ts-18-medium ts-dark-gray" for="street">Logradouro</label>
+                    <input class="ts-14-medium" type="text" id="street" placeholder="Logradouro">
+                </div>
+
+                <div class="field col-lg-4">
+                    <label class="ts-18-medium ts-dark-gray" for="number">Número</label>
+                    <input class="ts-14-medium" type="text" id="number" placeholder="Número">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field col-lg-6">
+                    <label class="ts-18-medium ts-dark-gray" for="complement">Complemento</label>
+                    <input class="ts-14-medium" type="text" id="complement" placeholder="Complemento">
+                </div>
+
+                <div class="field col-lg-6">
+                    <label class="ts-18-medium ts-dark-gray" for="reference">Referência</label>
+                    <input class="ts-14-medium" type="text" id="reference" placeholder="Referência">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="field col-lg-5">
+                    <label class="ts-18-medium ts-dark-gray" for="neighborhood">Bairro</label>
+                    <input class="ts-14-medium" type="text" id="neighborhood" placeholder="Bairro">
+                </div>
+
+                <div class="field col-lg-5">
+                    <label class="ts-18-medium ts-dark-gray" for="city">Cidade</label>
+                    <input class="ts-14-medium" type="text" id="city" placeholder="Cidade">
+                </div>
+
+                <div class="field col-lg-2">
+                    <label class="ts-18-medium ts-dark-gray" for="state">Estado</label>
+                    <input class="ts-14-medium" type="text" id="state" placeholder="Estado">
+                </div>
+            </div>
+
+<!--
+            Nome do Fornecedor
+            Tipo de pessoa (Radio button: física ou jurídica)
+            CNPJ ou CPF (renderização condicional)
+
+
+            Nome do Contato (texto)
+            Email do Contato (texto)
+
+            Endereço (Logradouro, Número... etc)
+            CEP, Botão buscar (Via CEP)
+
+            Rua, Numero
+            Complemento, Referencia
+            Bairro, Cidade, Estado
+
+            Descrição de Atividades (textarea)
+            1) O Campo CPF ou CNPJ deve ser apresentado somente apos seleção do tipo de pessoa;
+            2) O Campo de telefone deve ser uma lista, podem adicionar/remover
+            3) O Endereço deve ser carregado automaticamente utilizando a API
+
+            Telefone (Lista de Telefones (texto))
+-->
+
+            <div class="row-button-form">
+                <input  class="btn-save-provider ts-24-bold ts-white" type="submit" value="Cadastrar">
+            </div>
+        </form>
+
+
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</body>
+</html>

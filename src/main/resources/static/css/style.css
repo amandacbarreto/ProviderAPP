@@ -293,7 +293,9 @@ header{
     margin-bottom: 3rem;
 }
 
-.btn-new-provider{
+.btn-new-provider,
+.btn-phone,
+.btn-search-cep{
     display: flex;
     height: 4rem;
     width: fit-content;
@@ -317,24 +319,24 @@ header{
 
     /* Provider list */
 
-table {
+.provider-table{
     border-collapse: separate;
     border-spacing: 0 1.4rem;
     margin-top: -1.4rem; /* correct offset on first border spacing if desired */
     text-align: center;
 }
-td {
+.provider-table td {
     border: none;
     padding: 1.4rem;
     background-color: var(--white);
     height: 8rem;
 }
-td:first-child {
+.provider-table td:first-child {
     border-left-style: none;
     border-top-left-radius: 1.4rem;
     border-bottom-left-radius: 1.4rem;
 }
-td:last-child {
+.provider-table td:last-child {
     border-right-style: none;
     border-bottom-right-radius: 1.4rem;
     border-top-right-radius: 1.4rem;
@@ -350,20 +352,21 @@ td:last-child {
     display: flex;
     flex-direction: column;
     background-color: var(--lighter-gray);
+    align-items: center;
 }
 
 .provider-register .section-header{
     display: flex;
     justify-content: space-between;
     padding-bottom: 1rem;
-    border-bottom: 0.1rem solid var(--light-gray);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .btn-save-provider{
     display: flex;
     height: 4rem;
-    width: fit-content;
+    width: 320px;
     padding: 0 2rem;
     justify-content: center;
     align-items: center;
@@ -378,6 +381,11 @@ td:last-child {
 
 .provider-register form{
     display: grid;
+    width: 80%;
+}
+
+.provider-register form .row{
+    margin-bottom: 2rem;
 }
 
 .provider-register .field{
@@ -395,6 +403,10 @@ td:last-child {
 
 .provider-register form input{
     height: 4rem;
+}
+
+.provider-register form input,
+.provider-register form textarea{
     border: 1px solid var(--light-gray);
     border-radius: 0.4rem;
 }
@@ -407,10 +419,42 @@ td:last-child {
     border: none;
 }
 
+.provider-register form h2{
+    margin-top: 2rem;
+}
+
+.provider-register form hr{
+    margin-bottom: 2rem;
+}
+
 .provider-type{
     display: flex;
-    justify-content: space-between;
     align-items: center;
+}
+
+.provider-type input{
+    margin-right: 1.4rem;
+}
+
+.provider-type label{
+    margin-right: 6rem;
+}
+
+.phone-input{
+    width: 90%;
+}
+
+.cep-row{
+    display: flex;
+}
+
+.cep-row button{
+    margin-left: 4rem;
+}
+
+.row-button-form{
+    display: flex;
+    justify-content: center;
 }
 
 
