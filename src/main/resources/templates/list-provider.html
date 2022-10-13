@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <title>Home</title>
+</head>
+<body class="logged">
+    <header>
+        <button class="btn-menu ts-18-medium ts-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+            <svg xmlns="http://www.w3.org/2000/svg" height="28" width="28" viewBox="0 0 48 48" fill="#FFF"><path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z"/></svg>
+            <span>MENU</span>
+        </button>
+    </header>
+<div class="offcanvas offcanvas-start ts-white" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+    <div class="offcanvas-header">
+        <h2 class="offcanvas-title ts-32-black" id="offcanvasLeftLabel">Desafio 3</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body ts-18-medium">
+        <div class="user-info">
+            <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" fill="#FFF"><path d="M11.15 35.1q3.15-1.95 6.2-2.975Q20.4 31.1 24 31.1q3.6 0 6.7 1.025t6.2 2.975q2.2-2.7 3.1-5.4.9-2.7.9-5.7 0-7.2-4.85-12.05Q31.2 7.1 24 7.1q-7.2 0-12.05 4.85Q7.1 16.8 7.1 24q0 3 .925 5.7t3.125 5.4ZM24 25.6q-2.95 0-4.925-2-1.975-2-1.975-4.95 0-2.9 2-4.9 2-2 4.9-2 2.95 0 4.925 2 1.975 2 1.975 4.95 0 2.9-2 4.9-2 2-4.9 2Zm0 18.7q-4.25 0-7.95-1.6T9.6 38.325q-2.75-2.775-4.325-6.45Q3.7 28.2 3.7 24q0-4.25 1.6-7.925T9.675 9.65q2.775-2.75 6.45-4.35Q19.8 3.7 24.05 3.7q4.2 0 7.875 1.6t6.425 4.35q2.75 2.75 4.35 6.45 1.6 3.7 1.6 7.9t-1.6 7.875q-1.6 3.675-4.35 6.45Q35.6 41.1 31.9 42.7T24 44.3Z"/></svg>
+            <h1 class="ts-20-black">Amanda Barreto</h1>
+        </div>
+        <li>
+            <ul>
+                <a href="/fornecedores">Listar fornecedores</a>
+            </ul>
+            <ul>
+                <a href="/fornecedores/cadastrar">Novo fornecedor</a>
+            </ul>
+            <ul class="user-logout">
+                <a href="/">Sair</a>
+            </ul>
+        </li>
+    </div>
+</div>
+
+
+<!--<div th:switch="${providers}">
+    <h2 th:case="null">Sem forncedores!</h2>
+    <div th:case="*">-->
+    <section class="provider-list">
+        <div class="section-header">
+            <h1 class="ts-24-bold ts-black">Fornecedores</h1>
+            <button class="btn-new-provider ts-18-medium ts-white" type="button">
+                <a href="/fornecedores/cadastrar">NOVO FORNECEDOR</a>
+            </button>
+        </div>
+        <table class="provider-table">
+            <thead>
+            <tr class="ts-18-medium ts-dark-gray">
+                <th>Id</th>
+                <th>Nome</th>
+                <th>CNPJ/CPF</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="ts-24-light ts-black">
+                <td>1</td>
+                <td>Mercado Eletrônico</td>
+                <td>00.117.351/0001-87</td>
+                <td>contato@me.com.br</td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#001940"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#001940"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                </td>
+            </tr>
+            <tr class="ts-24-light ts-black">
+                <td>1</td>
+                <td>Mercado Eletrônico</td>
+                <td>00.117.351/0001-87</td>
+                <td>contato@me.com.br</td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#001940"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>                </td>
+                <td>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#001940"><path d="M0 0h24v24H0z" fill="none"/><path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/></svg>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </section>
+<!--    </div>
+</div>-->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+</body>
+</html>

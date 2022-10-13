@@ -20,4 +20,10 @@ public class ProviderController {
         ModelAndView mv = new ModelAndView("registration");
         return mv;
     }
+
+    @GetMapping("/fornecedores")
+    public ModelAndView showProviderList() {
+        ModelAndView mv = new ModelAndView("list-provider");
+        return mv;
+    }
 }
