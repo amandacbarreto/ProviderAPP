@@ -17,15 +17,16 @@
             <h2 class="ts-24-bold ts-black">Cadastro</h2>
             <p class="ts-18-light ts-black">Preecha os campos abaixo para criar uma conta</p>
         </div>
-        <form action="#" method="post">
+        <form th:action="@{/adduser}" th:object="${userDTO}" method="post" onsubmit ="return confirmPassword()">
             <label class="ts-18-medium ts-dark-gray" for="name">Nome</label>
-            <input class="ts-14-medium" type="text" id="name" placeholder="Nome">
+            <input class="ts-14-medium" type="text" th:field="*{name}" id="name" placeholder="Nome" required>
             <label class="ts-18-medium ts-dark-gray" for="email">E-mail</label>
-            <input class="ts-14-medium" type="email"id="email" placeholder="E-mail">
+            <input class="ts-14-medium" type="email" th:field="*{email}" id="email" placeholder="E-mail" required>
             <label class="ts-18-medium ts-dark-gray" for="password">Senha</label>
-            <input class="ts-14-medium" type="password" id="password" placeholder="Senha">
-            <label class="ts-18-medium ts-dark-gray" for="password">Confirmar senha</label>
-            <input class="ts-14-medium" type="password" id="confirmPassword" placeholder="Senha">
+            <input class="ts-14-medium" type="password" th:field="*{password}" id="password" placeholder="Senha" required>
+            <label class="ts-18-medium ts-dark-gray" for="confirmPassword">Confirmar senha</label>
+            <input class="ts-14-medium" type="password" id="confirmPassword" placeholder="Senha" required>
+            <span id="errorMessages"></span>
             <input  class="ts-24-bold ts-white" type="submit" value="Cadastrar">
         </form>
         <p class="ts-14-light ts-black">Já possui conta? <a href="/" class="ts-14-medium ts-dark-blue">Faça seu login aqui</a></p>
