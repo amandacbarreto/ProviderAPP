@@ -73,7 +73,7 @@ public class ProviderController {
         return "redirect:/fornecedores/cadastrar";
     }
 
-    @RequestMapping(value="/addPhone", params={"addPhone"})
+    @RequestMapping(value="provider", params={"addPhone"})
     public String addPhone(Provider provider, BindingResult bindingResult) {
         provider.getPhoneList().add(new Phone());
         return "register-provider";

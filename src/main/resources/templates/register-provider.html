@@ -9,14 +9,130 @@
 <form class="container" th:action="@{/provider}" th:object="${provider}" method="post">
   <!--  <label for="id">Id</label>
     <input type="number" th:field="*{id}" id="id" placeholder="Id">-->
-  <label for="name">Name</label>
-  <input type="text" th:field="*{name}" id="name" placeholder="Name">
-  <h2>Endereço</h2>
-  <!--<input type="text" th:field="*{street}" id="street" placeholder="Endereço">
-  -->
-  <!--<h2>Telefone</h2>
-  <input type="text" th:field="*{phoneList}" id="phoneList" placeholder="Telefones">
-  </div>-->
+
+  <section id="mainInfoSection">
+    <h2 class="ts-20-black ts-dark-gray"> Dados do fornecedor </h2>
+    <hr>
+
+    <div class="row">
+      <div class="field col">
+        <label class="ts-18-medium ts-dark-gray" for="name">Nome do fornecedor</label>
+        <input class="ts-14-medium form-control" th:field="*{name}" type="text" id="name" placeholder="Nome do fornecedor" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field col-lg-6">
+        <label class="ts-18-medium ts-dark-gray" for="name">Tipo de fornecedor</label>
+        <div class="provider-type ts-18-medium ts-dark-gray">
+          <input type="radio" id="legalEntity" name="personType" value="LEGAL_ENTITY" onclick="showCnpjField();">
+          <label for="legalEntity">Pessoa jurídica</label><br>
+          <input type="radio" id="naturalPerson" name="personType" value="NATURAL_PERSON" onclick="showCpfField();">
+          <label for="naturalPerson">Pessoa física</label>
+        </div>
+      </div>
+
+      <div id="cpfField" class="field  col-lg-6">
+        <div>
+          <label class="ts-18-medium ts-dark-gray" for="cpf">CPF</label>
+        </div>
+        <div>
+          <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cpf" placeholder="000.000.000-00" required>
+        </div>
+      </div>
+      <div id="cnpjField" class="field col-lg-6">
+        <div>
+          <label class="ts-18-medium ts-dark-gray" for="cnpj">CNPJ</label>
+        </div>
+        <div>
+          <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cnpj" placeholder="00.000.000/0000-00" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field col">
+        <label class="ts-18-medium ts-dark-gray" for="activityDescription">Descrição das atividades</label>
+
+        <textarea class="ts-14-medium" th:field="*{activityDescription}" id="activityDescription" name="activityDescription" rows="4" cols="50" required>
+                        </textarea>
+      </div>
+    </div>
+  </section>
+
+  <section id="addressSection">
+    <h2 class="ts-20-black ts-dark-gray"> Endereço </h2>
+    <hr>
+
+    <div class="row">
+      <div class="field col-lg-3">
+        <label class="ts-18-medium ts-dark-gray" for="cep">CEP</label>
+        <div class="cep-row">
+          <input class="ts-14-medium" type="text" th:field="*{address.cep}" id="cep" placeholder="00.000-000" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field col-lg-8">
+        <label class="ts-18-medium ts-dark-gray" for="street">Logradouro</label>
+        <input class="ts-14-medium" type="text" th:field="*{address.street}" id="street" placeholder="Logradouro" required>
+      </div>
+
+      <div class="field col-lg-4">
+        <label class="ts-18-medium ts-dark-gray" for="number">Número</label>
+        <input class="ts-14-medium" type="text" th:field="*{address.number}" id="number" placeholder="Número" required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field col-lg-6">
+        <label class="ts-18-medium ts-dark-gray" for="complement">Complemento</label>
+        <input class="ts-14-medium" type="text" th:field="*{address.complement}" id="complement" placeholder="Complemento">
+      </div>
+
+      <div class="field col-lg-6">
+        <label class="ts-18-medium ts-dark-gray" for="reference">Referência</label>
+        <input class="ts-14-medium" type="text" th:field="*{address.reference}" id="reference" placeholder="Referência">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field col-lg-5">
+        <label class="ts-18-medium ts-dark-gray" for="neighborhood">Bairro</label>
+        <input class="ts-14-medium" type="text" th:field="*{address.neighborhood}" id="neighborhood" placeholder="Bairro" required>
+      </div>
+
+      <div class="field col-lg-5">
+        <label class="ts-18-medium ts-dark-gray" for="city">Cidade</label>
+        <input class="ts-14-medium" type="text" th:field="*{address.city}" id="city" placeholder="Cidade" required>
+      </div>
+
+      <div class="field col-lg-2">
+        <label class="ts-18-medium ts-dark-gray" for="state">Estado</label>
+        <input class="ts-14-medium" type="text" th:field="*{address.state}" id="state" placeholder="Estado" required>
+      </div>
+    </div>
+
+  </section>
+
+  <section id="mainContactSection">
+
+    <h2 class="ts-20-black ts-dark-gray"> Contato principal </h2>
+    <hr>
+
+    <div class="row">
+      <div class="field col-lg-6">
+        <label class="ts-18-medium ts-dark-gray" for="nameContact">Nome do contato</label>
+        <input class="ts-14-medium" type="text" th:field="*{nameContact}" id="nameContact" placeholder="Nome do contato principal" required>
+      </div>
+
+      <div class="field col-lg-6">
+        <label class="ts-18-medium ts-dark-gray" for="emailContact">E-mail do contato</label>
+        <input class="ts-14-medium" type="email" th:field="*{emailContact}" id="emailContact" placeholder="xxxxx@email.com" required>
+      </div>
+    </div>
+  </section>
 
   <div>
     <!--<table>
@@ -40,7 +156,7 @@
         <th>Id</th>
         <th>Telefone</th>
         <th>
-          <button name="addPhone">Add Phone</button>
+          <button type="submit" class="btn btn-primary" th:name="addPhone">AddPhone </button>
         </th>
       </tr>
       </thead>
