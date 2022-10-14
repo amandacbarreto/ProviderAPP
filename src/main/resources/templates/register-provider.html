@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<form class="container" th:action="@{/provider}" th:object="${provider}" method="post">
+  <!--  <label for="id">Id</label>
+    <input type="number" th:field="*{id}" id="id" placeholder="Id">-->
+  <label for="name">Name</label>
+  <input type="text" th:field="*{name}" id="name" placeholder="Name">
+  <h2>Endereço</h2>
+  <!--<input type="text" th:field="*{street}" id="street" placeholder="Endereço">
+  -->
+  <!--<h2>Telefone</h2>
+  <input type="text" th:field="*{phoneList}" id="phoneList" placeholder="Telefones">
+  </div>-->
+
+  <div>
+    <!--<table>
+      <thead>
+      <tr>
+        <th> Id</th>
+        <th> Telefone</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="phone, itemStat : *{phoneList}">
+        <td>1</td>
+        <td><input th:field="*{phoneList[__${itemStat.index}__].id}" /></td>
+      </tr>
+      </tbody>
+    </table>-->
+
+    <table>
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Telefone</th>
+        <th>
+          <button name="addPhone">Add Phone</button>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr th:each="phone, itemStat : *{phoneList}">
+          <td>1</td>
+          <td><input th:field="*{phoneList[__${itemStat.index}__].id}" /></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button class="btn btn-primary" name="save" type="submit">Salvar</button>
+</form>
+
+</body>
+</html>
+
+
+<!--
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+  <title>Cadastro de fornecedor</title>
+</head>
+<body class="logged">
+  <header>
+    <button class="btn-menu ts-18-medium ts-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+      <svg xmlns="http://www.w3.org/2000/svg" height="28" width="28" viewBox="0 0 48 48" fill="#FFF"><path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z"/></svg>
+      <span>MENU</span>
+    </button>
+  </header>
+  <div class="offcanvas offcanvas-start ts-white" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title ts-32-black" id="offcanvasLeftLabel">Desafio 3</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body ts-18-medium">
+      <div class="user-info">
+        <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" fill="#FFF"><path d="M11.15 35.1q3.15-1.95 6.2-2.975Q20.4 31.1 24 31.1q3.6 0 6.7 1.025t6.2 2.975q2.2-2.7 3.1-5.4.9-2.7.9-5.7 0-7.2-4.85-12.05Q31.2 7.1 24 7.1q-7.2 0-12.05 4.85Q7.1 16.8 7.1 24q0 3 .925 5.7t3.125 5.4ZM24 25.6q-2.95 0-4.925-2-1.975-2-1.975-4.95 0-2.9 2-4.9 2-2 4.9-2 2.95 0 4.925 2 1.975 2 1.975 4.95 0 2.9-2 4.9-2 2-4.9 2Zm0 18.7q-4.25 0-7.95-1.6T9.6 38.325q-2.75-2.775-4.325-6.45Q3.7 28.2 3.7 24q0-4.25 1.6-7.925T9.675 9.65q2.775-2.75 6.45-4.35Q19.8 3.7 24.05 3.7q4.2 0 7.875 1.6t6.425 4.35q2.75 2.75 4.35 6.45 1.6 3.7 1.6 7.9t-1.6 7.875q-1.6 3.675-4.35 6.45Q35.6 41.1 31.9 42.7T24 44.3Z"/></svg>
+        <h1 class="ts-20-black">Amanda Barreto</h1>
+      </div>
+      <li>
+        <ul>
+          <a href="/fornecedores">Listar fornecedores</a>
+        </ul>
+        <ul>
+          <a href="/fornecedores/cadastrar">Novo fornecedor</a>
+        </ul>
+        <ul class="user-logout">
+          <a href="/">Sair</a>
+        </ul>
+      </li>
+    </div>
+  </div>
+
+  <section class="provider-register">
+    <div class="section-header">
+      <h1 class="ts-24-bold ts-black">Cadastro de fornecedor</h1>
+    </div>
+
+    <form class="container" th:action="@{/addProvider}" th:object="${provider}" method="post">
+
+      <section id="mainInfoSection">
+        <h2 class="ts-20-black ts-dark-gray"> Dados do fornecedor </h2>
+        <hr>
+
+        <div class="row">
+          <div class="field col">
+            <label class="ts-18-medium ts-dark-gray" for="name">Nome do fornecedor</label>
+            <input class="ts-14-medium form-control" th:field="*{name}" type="text" id="name" placeholder="Nome do fornecedor" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field col-lg-6">
+            <label class="ts-18-medium ts-dark-gray" for="name">Tipo de fornecedor</label>
+            <div class="provider-type ts-18-medium ts-dark-gray">
+              <input type="radio" id="legalEntity" name="personType" value="LEGAL_ENTITY" onclick="showCnpjField();">
+              <label for="legalEntity">Pessoa jurídica</label><br>
+              <input type="radio" id="naturalPerson" name="personType" value="NATURAL_PERSON" onclick="showCpfField();">
+              <label for="naturalPerson">Pessoa física</label>
+            </div>
+          </div>
+
+          <div id="cpfField" class="field  col-lg-6">
+            <div>
+              <label class="ts-18-medium ts-dark-gray" for="cpf">CPF</label>
+            </div>
+            <div>
+              <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cpf" placeholder="000.000.000-00" required>
+            </div>
+          </div>
+          <div id="cnpjField" class="field col-lg-6">
+            <div>
+              <label class="ts-18-medium ts-dark-gray" for="cnpj">CNPJ</label>
+            </div>
+            <div>
+              <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cnpj" placeholder="00.000.000/0000-00" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field col">
+            <label class="ts-18-medium ts-dark-gray" for="activityDescription">Descrição das atividades</label>
+
+            <textarea class="ts-14-medium" th:field="*{activityDescription}" id="activityDescription" name="activityDescription" rows="4" cols="50" required>
+                          </textarea>
+          </div>
+        </div>
+      </section>
+
+      <section id="addressSection">
+        <h2 class="ts-20-black ts-dark-gray"> Endereço </h2>
+        <hr>
+
+        <div class="row">
+          <div class="field col-lg-3">
+            <label class="ts-18-medium ts-dark-gray" for="cep">CEP</label>
+            <div class="cep-row">
+              <input class="ts-14-medium" type="text" th:field="*{address.cep}" id="cep" placeholder="00.000-000" required>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field col-lg-8">
+            <label class="ts-18-medium ts-dark-gray" for="street">Logradouro</label>
+            <input class="ts-14-medium" type="text" th:field="*{address.street}" id="street" placeholder="Logradouro" required>
+          </div>
+
+          <div class="field col-lg-4">
+            <label class="ts-18-medium ts-dark-gray" for="number">Número</label>
+            <input class="ts-14-medium" type="text" th:field="*{address.number}" id="number" placeholder="Número" required>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field col-lg-6">
+            <label class="ts-18-medium ts-dark-gray" for="complement">Complemento</label>
+            <input class="ts-14-medium" type="text" th:field="*{address.complement}" id="complement" placeholder="Complemento">
+          </div>
+
+          <div class="field col-lg-6">
+            <label class="ts-18-medium ts-dark-gray" for="reference">Referência</label>
+            <input class="ts-14-medium" type="text" th:field="*{address.reference}" id="reference" placeholder="Referência">
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="field col-lg-5">
+            <label class="ts-18-medium ts-dark-gray" for="neighborhood">Bairro</label>
+            <input class="ts-14-medium" type="text" th:field="*{address.neighborhood}" id="neighborhood" placeholder="Bairro" required>
+          </div>
+
+          <div class="field col-lg-5">
+            <label class="ts-18-medium ts-dark-gray" for="city">Cidade</label>
+            <input class="ts-14-medium" type="text" th:field="*{address.city}" id="city" placeholder="Cidade" required>
+          </div>
+
+          <div class="field col-lg-2">
+            <label class="ts-18-medium ts-dark-gray" for="state">Estado</label>
+            <input class="ts-14-medium" type="text" th:field="*{address.state}" id="state" placeholder="Estado" required>
+          </div>
+        </div>
+
+      </section>
+
+      <section id="mainContactSection">
+
+        <h2 class="ts-20-black ts-dark-gray"> Contato principal </h2>
+        <hr>
+
+        <div class="row">
+          <div class="field col-lg-6">
+            <label class="ts-18-medium ts-dark-gray" for="nameContact">Nome do contato</label>
+            <input class="ts-14-medium" type="text" th:field="*{nameContact}" id="nameContact" placeholder="Nome do contato principal" required>
+          </div>
+
+          <div class="field col-lg-6">
+            <label class="ts-18-medium ts-dark-gray" for="emailContact">E-mail do contato</label>
+            <input class="ts-14-medium" type="email" th:field="*{emailContact}" id="emailContact" placeholder="xxxxx@email.com" required>
+          </div>
+        </div>
+      </section>
+
+      <section id="phoneListSection">
+        <h2 class="ts-20-black ts-dark-gray"> Telefone </h2>
+        <hr>
+
+        <table class="phone-add-table">
+          <thead>
+          <tr class="ts-18-medium ts-dark-gray">
+            <th>Id</th>
+            <th>Telefone</th>
+            <th>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr th:each="phone, list : *{phoneList}">
+            <td class="ts-14-medium" th:text="${list.count}">1</td>
+            <td>
+              <input class="ts-14-medium phone-input" id="phone" type="text" th:field="*{phoneList[__${list.index}__].contact}" placeholder="(00) 00000-0000" required/>
+            </td>
+            <td>
+              <button class="btn-phone ts-18-medium ts-white" th:value="${list.index}" >
+                Remover telefone
+              </button>
+            </td>
+          </tr>
+        </table>
+      </section>
+
+
+      <div class="row-button-form">
+        <input  class="btn-save-provider ts-24-bold ts-white" type="submit" value="Cadastrar">
+      </div>
+    </form>
+
+
+  </section>
+
+  <script type="application/javascript" th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js}" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+  <script type="application/javascript" th:src="@{https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js}"></script>
+  <script type="application/javascript" th:src="@{https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js}"></script>
+  <script type="application/javascript" th:inline="javascript">
+
+    $(document).ready(function () {
+      $("#cpf").mask('000.000.000-00', {reverse: true});
+      $("#cnpj").mask('00.000.000/0000-00', {reverse: true});
+      $("#cep").mask('00.000-000', {reverse: true});
+      $("#phone").mask('00 00000-0000', {reverse: true});
+    });
+
+    function showCpfField(){
+      document.getElementById('cnpjField').style.display ='none';
+      document.getElementById('cpfField').style.display = 'block';
+    }
+
+    function showCnpjField(){
+      document.getElementById('cpfField').style.display ='none';
+      document.getElementById('cnpjField').style.display = 'block';
+    }
+
+    $(document).ready(function() {
+
+      function clean_address_form() {
+        // Clean Address form.
+        $("#street").val("");
+        $("#neighborhood").val("");
+        $("#city").val("");
+        $("#state").val("");
+      }
+
+      //When Cep field loses focus.
+      $("#cep").blur(function() {
+
+        //Create "cep" variable with digits only.
+        var cep = $(this).val().replace(/\D/g, '');
+
+        //Checks if a cep was informed.
+        if (cep != "") {
+
+          //Validate cep.
+          var validacep = /^[0-9]{8}$/;
+
+          //Validate cep format
+          if(validacep.test(cep)) {
+
+            //Fill in the fields with "..." while querying webservice.
+            $("#street").val("...");
+            $("#neighborhood").val("...");
+            $("#city").val("...");
+            $("#state").val("...");
+
+            //Search the informed cep in viacep.com.br/
+            $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(data) {
+
+              if (!("erro" in data)) {
+                //Update fields with returned data.
+                $("#street").val(data.logradouro);
+                $("#neighborhood").val(data.bairro);
+                $("#city").val(data.localidade);
+                $("#state").val(data.uf);
+              } //end if.
+              else {
+                //searched cep was not found.
+                clean_address_form();
+                alert("CEP não encontrado.");
+              }
+            });
+          } //end if.
+          else {
+            //Invalid cep.
+            clean_address_form();
+            alert("Formato de CEP inválido.");
+          }
+        } //end if.
+        else {
+          //cep not informed, clean form.
+          clean_address_form();
+        }
+      });
+    });
+
+
+  </script>
+</body>
+</html>-->

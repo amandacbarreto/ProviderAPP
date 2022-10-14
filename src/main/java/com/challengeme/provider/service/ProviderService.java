@@ -29,7 +29,17 @@ public class ProviderService {
     }
 
     public Provider insert (Provider provider) {
-        Provider newProvider = new Provider(this.findAll().size()+1L, provider.getName(), provider.getAddress(), provider.getPhoneList());
+        Provider newProvider = new Provider(
+                this.findAll().size()+1L,
+                provider.getName(),
+                provider.getNameContact(),
+                provider.getEmailContact(),
+                provider.getPersonType(),
+                provider.getCpfOrCnpj(),
+                provider.getActivityDescription(),
+                provider.getAddress(),
+                provider.getPhoneList()
+        );
         return providerRepository.insert(newProvider);
     }
 

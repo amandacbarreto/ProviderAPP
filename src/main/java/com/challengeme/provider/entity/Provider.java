@@ -1,5 +1,6 @@
 package com.challengeme.provider.entity;
 
+import com.challengeme.provider.enums.PersonType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,11 +15,11 @@ public class Provider {
     private Long id;
 
     private String name;
-/*    private String nameContact;
+    private String nameContact;
     private String emailContact;
     private PersonType personType;
     private String cpfOrCnpj;
-    private String activityDescription;*/
+    private String activityDescription;
     private Address address;
     private List<Phone> phoneList = new ArrayList<>();
 
@@ -26,9 +27,14 @@ public class Provider {
 
     }
 
-    public Provider(Long id, String name, Address address, List<Phone> phoneList) {
+    public Provider(Long id, String name, String nameContact, String emailContact, PersonType personType, String cpfOrCnpj, String activityDescription, Address address, List<Phone> phoneList) {
         this.id = id;
         this.name = name;
+        this.nameContact = nameContact;
+        this.emailContact = emailContact;
+        this.personType = personType;
+        this.cpfOrCnpj = cpfOrCnpj;
+        this.activityDescription = activityDescription;
         this.address = address;
         this.phoneList = phoneList;
     }
@@ -47,6 +53,46 @@ public class Provider {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getNameContact() {
+        return nameContact;
+    }
+
+    public void setNameContact(String nameContact) {
+        this.nameContact = nameContact;
+    }
+
+    public String getEmailContact() {
+        return emailContact;
+    }
+
+    public void setEmailContact(String emailContact) {
+        this.emailContact = emailContact;
+    }
+
+    public PersonType getPersonType() {
+        return personType;
+    }
+
+    public void setPersonType(PersonType personType) {
+        this.personType = personType;
+    }
+
+    public String getCpfOrCnpj() {
+        return cpfOrCnpj;
+    }
+
+    public void setCpfOrCnpj(String cpfOrCnpj) {
+        this.cpfOrCnpj = cpfOrCnpj;
+    }
+
+    public String getActivityDescription() {
+        return activityDescription;
+    }
+
+    public void setActivityDescription(String activityDescription) {
+        this.activityDescription = activityDescription;
     }
 
     public Address getAddress() {

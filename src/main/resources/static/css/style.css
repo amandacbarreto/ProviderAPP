@@ -457,6 +457,15 @@ header{
     justify-content: center;
 }
 
+#cnpjField,
+#cpfField{
+    display: none;
+}
+
+#phoneListSection{
+    margin-bottom: 3rem;
+}
+
 
 
 
