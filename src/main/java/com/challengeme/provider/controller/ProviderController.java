@@ -79,12 +79,12 @@ public class ProviderController {
         return "register-provider";
     }
 
-    @RequestMapping(value="/changePhoneList", params={"removePhone"})
+    @RequestMapping(value="provider", params={"removePhone"})
     public String removePhone(
             final Provider provider, final BindingResult bindingResult,
             final HttpServletRequest req) {
-        final Integer rowId = Integer.valueOf(req.getParameter("removePhone"));
-        provider.getPhoneList().remove(rowId.intValue());
+        final Integer id = Integer.valueOf(req.getParameter("removePhone"));
+        provider.getPhoneList().remove(id.intValue());
         return "register-provider";
     }
 }

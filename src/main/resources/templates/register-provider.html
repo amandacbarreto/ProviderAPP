@@ -156,14 +156,21 @@
         <th>Id</th>
         <th>Telefone</th>
         <th>
-          <button type="submit" class="btn btn-primary" th:name="addPhone">AddPhone </button>
+          <button type="submit" class="btn btn-primary" th:name="addPhone">
+            Adicionar telefone
+          </button>
         </th>
       </tr>
       </thead>
       <tbody>
-        <tr th:each="phone, itemStat : *{phoneList}">
-          <td>1</td>
-          <td><input th:field="*{phoneList[__${itemStat.index}__].id}" /></td>
+        <tr th:each="phone, list : *{phoneList}">
+          <td th:text="${list.count}">1</td>
+          <td><input th:field="*{phoneList[__${list.index}__].id}" required/></td>
+          <td>
+            <button type="submit" class="btn btn-primary" th:value="${list.index}" th:name="removePhone">
+              Remover telefone
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
