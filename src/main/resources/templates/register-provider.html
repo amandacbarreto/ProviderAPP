@@ -9,180 +9,215 @@
   <link th:href="@{/css/style.css}" rel="stylesheet" />
   <title>Cadastro de fornecedor</title>
 </head>
-<body>
+<body class="logged">
 
-<form class="container" th:action="@{/provider}" th:object="${provider}" method="post">
-  <!--  <label for="id">Id</label>
-    <input type="number" th:field="*{id}" id="id" placeholder="Id">-->
-
-  <section id="mainInfoSection">
-    <h2 class="ts-20-black ts-dark-gray"> Dados do fornecedor </h2>
-    <hr>
-
-    <div class="row">
-      <div class="field col">
-        <label class="ts-18-medium ts-dark-gray" for="name">Nome do fornecedor</label>
-        <input class="ts-14-medium form-control" th:field="*{name}" type="text" id="name" placeholder="Nome do fornecedor" required>
-      </div>
+  <header>
+    <button class="btn-menu ts-18-medium ts-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasLeft" aria-controls="offcanvasLeft">
+      <svg xmlns="http://www.w3.org/2000/svg" height="28" width="28" viewBox="0 0 48 48" fill="#FFF"><path d="M6 36v-3h36v3Zm0-10.5v-3h36v3ZM6 15v-3h36v3Z"/></svg>
+      <span>MENU</span>
+    </button>
+  </header>
+  <div class="offcanvas offcanvas-start ts-white" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
+    <div class="offcanvas-header">
+      <h2 class="offcanvas-title ts-32-black" id="offcanvasLeftLabel">Desafio 3</h2>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-
-    <div class="row">
-      <div class="field col-lg-6">
-        <label class="ts-18-medium ts-dark-gray" for="name">Tipo de fornecedor</label>
-        <div class="provider-type ts-18-medium ts-dark-gray">
-          <input type="radio" id="legalEntity" name="personType" value="LEGAL_ENTITY" onclick="showCnpjField();">
-          <label for="legalEntity">Pessoa jurídica</label><br>
-          <input type="radio" id="naturalPerson" name="personType" value="NATURAL_PERSON" onclick="showCpfField();">
-          <label for="naturalPerson">Pessoa física</label>
-        </div>
+    <div class="offcanvas-body ts-18-medium">
+      <div class="user-info">
+        <svg xmlns="http://www.w3.org/2000/svg" height="100" width="100" viewBox="0 0 48 48" fill="#FFF"><path d="M11.15 35.1q3.15-1.95 6.2-2.975Q20.4 31.1 24 31.1q3.6 0 6.7 1.025t6.2 2.975q2.2-2.7 3.1-5.4.9-2.7.9-5.7 0-7.2-4.85-12.05Q31.2 7.1 24 7.1q-7.2 0-12.05 4.85Q7.1 16.8 7.1 24q0 3 .925 5.7t3.125 5.4ZM24 25.6q-2.95 0-4.925-2-1.975-2-1.975-4.95 0-2.9 2-4.9 2-2 4.9-2 2.95 0 4.925 2 1.975 2 1.975 4.95 0 2.9-2 4.9-2 2-4.9 2Zm0 18.7q-4.25 0-7.95-1.6T9.6 38.325q-2.75-2.775-4.325-6.45Q3.7 28.2 3.7 24q0-4.25 1.6-7.925T9.675 9.65q2.775-2.75 6.45-4.35Q19.8 3.7 24.05 3.7q4.2 0 7.875 1.6t6.425 4.35q2.75 2.75 4.35 6.45 1.6 3.7 1.6 7.9t-1.6 7.875q-1.6 3.675-4.35 6.45Q35.6 41.1 31.9 42.7T24 44.3Z"/></svg>
+        <h1 class="ts-20-black">Amanda Barreto</h1>
       </div>
-
-      <div id="cpfField" class="field  col-lg-6">
-        <div>
-          <label class="ts-18-medium ts-dark-gray" for="cpf">CPF</label>
-        </div>
-        <div>
-          <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cpf" placeholder="000.000.000-00">
-        </div>
-      </div>
-      <div id="cnpjField" class="field col-lg-6">
-        <div>
-          <label class="ts-18-medium ts-dark-gray" for="cnpj">CNPJ</label>
-        </div>
-        <div>
-          <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cnpj" placeholder="00.000.000/0000-00">
-        </div>
-      </div>
+      <li>
+        <ul>
+          <a href="/fornecedores">Listar fornecedores</a>
+        </ul>
+        <ul>
+          <a href="/fornecedores/cadastrar">Novo fornecedor</a>
+        </ul>
+        <ul class="user-logout">
+          <a href="/">Sair</a>
+        </ul>
+      </li>
     </div>
-
-    <div class="row">
-      <div class="field col">
-        <label class="ts-18-medium ts-dark-gray" for="activityDescription">Descrição das atividades</label>
-
-        <textarea class="ts-14-medium" th:field="*{activityDescription}" id="activityDescription" name="activityDescription" rows="4" cols="50" required>
-                        </textarea>
-      </div>
-    </div>
-  </section>
-
-  <section id="addressSection">
-    <h2 class="ts-20-black ts-dark-gray"> Endereço </h2>
-    <hr>
-
-    <div class="row">
-      <div class="field col-lg-3">
-        <label class="ts-18-medium ts-dark-gray" for="cep">CEP</label>
-        <div class="cep-row">
-          <input class="ts-14-medium" type="text" th:field="*{address.cep}" id="cep" placeholder="00.000-000" required>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="field col-lg-8">
-        <label class="ts-18-medium ts-dark-gray" for="street">Logradouro</label>
-        <input class="ts-14-medium" type="text" th:field="*{address.street}" id="street" placeholder="Logradouro" required>
-      </div>
-
-      <div class="field col-lg-4">
-        <label class="ts-18-medium ts-dark-gray" for="number">Número</label>
-        <input class="ts-14-medium" type="text" th:field="*{address.number}" id="number" placeholder="Número" required>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="field col-lg-6">
-        <label class="ts-18-medium ts-dark-gray" for="complement">Complemento</label>
-        <input class="ts-14-medium" type="text" th:field="*{address.complement}" id="complement" placeholder="Complemento">
-      </div>
-
-      <div class="field col-lg-6">
-        <label class="ts-18-medium ts-dark-gray" for="reference">Referência</label>
-        <input class="ts-14-medium" type="text" th:field="*{address.reference}" id="reference" placeholder="Referência">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="field col-lg-5">
-        <label class="ts-18-medium ts-dark-gray" for="neighborhood">Bairro</label>
-        <input class="ts-14-medium" type="text" th:field="*{address.neighborhood}" id="neighborhood" placeholder="Bairro" required>
-      </div>
-
-      <div class="field col-lg-5">
-        <label class="ts-18-medium ts-dark-gray" for="city">Cidade</label>
-        <input class="ts-14-medium" type="text" th:field="*{address.city}" id="city" placeholder="Cidade" required>
-      </div>
-
-      <div class="field col-lg-2">
-        <label class="ts-18-medium ts-dark-gray" for="state">Estado</label>
-        <input class="ts-14-medium" type="text" th:field="*{address.state}" id="state" placeholder="Estado" required>
-      </div>
-    </div>
-
-  </section>
-
-  <section id="mainContactSection">
-
-    <h2 class="ts-20-black ts-dark-gray"> Contato principal </h2>
-    <hr>
-
-    <div class="row">
-      <div class="field col-lg-6">
-        <label class="ts-18-medium ts-dark-gray" for="nameContact">Nome do contato</label>
-        <input class="ts-14-medium" type="text" th:field="*{nameContact}" id="nameContact" placeholder="Nome do contato principal" required>
-      </div>
-
-      <div class="field col-lg-6">
-        <label class="ts-18-medium ts-dark-gray" for="emailContact">E-mail do contato</label>
-        <input class="ts-14-medium" type="email" th:field="*{emailContact}" id="emailContact" placeholder="xxxxx@email.com" required>
-      </div>
-    </div>
-  </section>
-
-  <div>
-    <!--<table>
-      <thead>
-      <tr>
-        <th> Id</th>
-        <th> Telefone</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr th:each="phone, itemStat : *{phoneList}">
-        <td>1</td>
-        <td><input th:field="*{phoneList[__${itemStat.index}__].id}" /></td>
-      </tr>
-      </tbody>
-    </table>-->
-
-    <table>
-      <thead>
-      <tr>
-        <th>Id</th>
-        <th>Telefone</th>
-        <th>
-          <button type="submit" class="btn btn-primary" th:name="addPhone">
-            Adicionar telefone
-          </button>
-        </th>
-      </tr>
-      </thead>
-      <tbody>
-        <tr th:each="phone, list : *{phoneList}">
-          <td th:text="${list.count}">1</td>
-          <td><input th:field="*{phoneList[__${list.index}__].id}" required/></td>
-          <td>
-            <button type="submit" class="btn btn-primary" th:value="${list.index}" th:name="removePhone">
-              Remover telefone
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
-  <button class="btn btn-primary" name="save" type="submit">Salvar</button>
-</form>
 
+  <section class="provider-register">
+    <div class="section-header">
+      <h1 class="ts-24-bold ts-black">Cadastro de fornecedor</h1>
+    </div>
+
+    <form class="container" th:action="@{/provider}" th:object="${provider}" method="post">
+    <!--  <label for="id">Id</label>
+      <input type="number" th:field="*{id}" id="id" placeholder="Id">-->
+
+    <section id="mainInfoSection">
+      <h2 class="ts-20-black ts-dark-gray"> Dados do fornecedor </h2>
+      <hr>
+
+      <div class="row">
+        <div class="field col">
+          <label class="ts-18-medium ts-dark-gray" for="name">Nome do fornecedor</label>
+          <input class="ts-14-medium form-control" th:field="*{name}" type="text" id="name" placeholder="Nome do fornecedor" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field col-lg-6">
+          <label class="ts-18-medium ts-dark-gray" for="name">Tipo de fornecedor</label>
+          <div class="provider-type ts-18-medium ts-dark-gray">
+            <input type="radio" id="legalEntity" name="personType" value="LEGAL_ENTITY" onclick="showCnpjField();">
+            <label for="legalEntity">Pessoa jurídica</label><br>
+            <input type="radio" id="naturalPerson" name="personType" value="NATURAL_PERSON" onclick="showCpfField();">
+            <label for="naturalPerson">Pessoa física</label>
+          </div>
+        </div>
+
+        <div id="cpfField" class="field  col-lg-6">
+          <div>
+            <label class="ts-18-medium ts-dark-gray" for="cpf">CPF</label>
+          </div>
+          <div>
+            <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cpf" placeholder="000.000.000-00">
+          </div>
+        </div>
+        <div id="cnpjField" class="field col-lg-6">
+          <div>
+            <label class="ts-18-medium ts-dark-gray" for="cnpj">CNPJ</label>
+          </div>
+          <div>
+            <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cnpj" placeholder="00.000.000/0000-00">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field col">
+          <label class="ts-18-medium ts-dark-gray" for="activityDescription">Descrição das atividades</label>
+
+          <textarea class="ts-14-medium" th:field="*{activityDescription}" id="activityDescription" name="activityDescription" rows="4" cols="50" required>
+                          </textarea>
+        </div>
+      </div>
+    </section>
+
+    <section id="addressSection">
+      <h2 class="ts-20-black ts-dark-gray"> Endereço </h2>
+      <hr>
+
+      <div class="row">
+        <div class="field col-lg-3">
+          <label class="ts-18-medium ts-dark-gray" for="cep">CEP</label>
+          <div class="cep-row">
+            <input class="ts-14-medium" type="text" th:field="*{address.cep}" id="cep" placeholder="00.000-000" required>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field col-lg-8">
+          <label class="ts-18-medium ts-dark-gray" for="street">Logradouro</label>
+          <input class="ts-14-medium" type="text" th:field="*{address.street}" id="street" placeholder="Logradouro" required>
+        </div>
+
+        <div class="field col-lg-4">
+          <label class="ts-18-medium ts-dark-gray" for="number">Número</label>
+          <input class="ts-14-medium" type="text" th:field="*{address.number}" id="number" placeholder="Número" required>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field col-lg-6">
+          <label class="ts-18-medium ts-dark-gray" for="complement">Complemento</label>
+          <input class="ts-14-medium" type="text" th:field="*{address.complement}" id="complement" placeholder="Complemento">
+        </div>
+
+        <div class="field col-lg-6">
+          <label class="ts-18-medium ts-dark-gray" for="reference">Referência</label>
+          <input class="ts-14-medium" type="text" th:field="*{address.reference}" id="reference" placeholder="Referência">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field col-lg-5">
+          <label class="ts-18-medium ts-dark-gray" for="neighborhood">Bairro</label>
+          <input class="ts-14-medium" type="text" th:field="*{address.neighborhood}" id="neighborhood" placeholder="Bairro" required>
+        </div>
+
+        <div class="field col-lg-5">
+          <label class="ts-18-medium ts-dark-gray" for="city">Cidade</label>
+          <input class="ts-14-medium" type="text" th:field="*{address.city}" id="city" placeholder="Cidade" required>
+        </div>
+
+        <div class="field col-lg-2">
+          <label class="ts-18-medium ts-dark-gray" for="state">Estado</label>
+          <input class="ts-14-medium" type="text" th:field="*{address.state}" id="state" placeholder="Estado" required>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="mainContactSection">
+
+      <h2 class="ts-20-black ts-dark-gray"> Contato principal </h2>
+      <hr>
+
+      <div class="row">
+        <div class="field col-lg-6">
+          <label class="ts-18-medium ts-dark-gray" for="nameContact">Nome do contato</label>
+          <input class="ts-14-medium" type="text" th:field="*{nameContact}" id="nameContact" placeholder="Nome do contato principal" required>
+        </div>
+
+        <div class="field col-lg-6">
+          <label class="ts-18-medium ts-dark-gray" for="emailContact">E-mail do contato</label>
+          <input class="ts-14-medium" type="email" th:field="*{emailContact}" id="emailContact" placeholder="xxxxx@email.com" required>
+        </div>
+      </div>
+    </section>
+
+    <div>
+      <!--<table>
+        <thead>
+        <tr>
+          <th> Id</th>
+          <th> Telefone</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="phone, itemStat : *{phoneList}">
+          <td>1</td>
+          <td><input th:field="*{phoneList[__${itemStat.index}__].id}" /></td>
+        </tr>
+        </tbody>
+      </table>-->
+
+      <table>
+        <thead>
+        <tr>
+          <th>Id</th>
+          <th>Telefone</th>
+          <th>
+            <button type="submit" class="btn btn-primary" th:name="addPhone">
+              Adicionar telefone
+            </button>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr th:each="phone, list : *{phoneList}">
+            <td th:text="${list.count}">1</td>
+            <td><input th:field="*{phoneList[__${list.index}__].id}" required/></td>
+            <td>
+              <button type="submit" class="btn btn-primary" th:value="${list.index}" th:name="removePhone">
+                Remover telefone
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <button class="btn btn-primary" name="save" type="submit">Salvar</button>
+  </form>
+  </section>
 </body>
 </html>
 
