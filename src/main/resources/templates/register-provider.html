@@ -12,22 +12,42 @@
   <script type="text/javascript"
           src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.0/jquery.mask.js"></script>
   <script>
+
+    var Mask = Mask || {};
+
+    Mask.MaskCpfCnpj = (function() {
+
+      function MaskCpfCnpj() {
+        this.radioPersonType = $('.js-radio-person-type');
+        this.labelCpfCnpj = $('[for=cpfOrCnpj]');
+        this.inputCpfCnpj = $('#cpfOrCnpj');
+      }
+
+      MaskCpfCnpj.prototype.start = function() {
+        this.radioPersonType.on('change', onPersonTypeChange.bind(this));
+      }
+
+      function onPersonTypeChange(event) {
+        var selectedType = $(event.currentTarget);
+
+        this.labelCpfCnpj.text(selectedType.data('document'));
+        this.inputCpfCnpj.mask(selectedType.data('mask'));
+        this.inputCpfCnpj.val('');
+        this.inputCpfCnpj.removeAttr('disabled');
+      }
+      return MaskCpfCnpj;
+
+    }());
+
+    $(function() {
+      var maskCpfCnpj = new Mask.MaskCpfCnpj();
+      maskCpfCnpj.start();
+    });
+
     $(document).ready(function () {
-      $("#cpf").mask('000.000.000-00', {reverse: true});
-      $("#cnpj").mask('00.000.000/0000-00', {reverse: true});
       $("#cep").mask('00.000-000', {reverse: true});
       $("#phone").mask('00 00000-0000', {reverse: true});
     });
-
-    function showCpfField(){
-      document.getElementById('cnpjField').style.display ='none';
-      document.getElementById('cpfField').style.display = 'block';
-    }
-
-    function showCnpjField(){
-      document.getElementById('cpfField').style.display ='none';
-      document.getElementById('cnpjField').style.display = 'block';
-    }
 
     $(document).ready(function() {
 
@@ -148,30 +168,20 @@
         <div class="field col-lg-6">
           <label class="ts-18-medium ts-dark-gray" for="name">Tipo de fornecedor</label>
           <div class="provider-type ts-18-medium ts-dark-gray">
-            <input type="radio" id="legalEntity" name="personType" value="LEGAL_ENTITY" onclick="showCnpjField();">
-            <label for="legalEntity">Pessoa jurídica</label><br>
-            <input type="radio" id="naturalPerson" name="personType" value="NATURAL_PERSON" onclick="showCpfField();">
-            <label for="naturalPerson">Pessoa física</label>
-
-          </div>
-
-        </div>
-
-        <div id="cpfField" class="field  col-lg-6">
-          <div>
-            <label class="ts-18-medium ts-dark-gray" for="cpf">CPF</label>
-          </div>
-          <div>
-            <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cpf" placeholder="000.000.000-00">
+            <input type="radio" id="id_JURIDICA" class="js-radio-person-type"
+                   name="tipoPessoa" data-document="CNPJ" data-mask="00.000.000/0000-00"
+                   th:field="*{personType}" th:value="LEGAL_ENTITY" required>
+            <label class="control-label" for="id_JURIDICA">Pessoa Jurídica</label>
+              <input type="radio" id="id_FISICA" class="js-radio-person-type"
+                     name="tipoPessoa" data-document="CPF" data-mask="000.000.000-00"
+                     th:field="*{personType}" th:value="NATURAL_PERSON" required>
+              <label class="control-label" for="id_FISICA">Pessoa Física</label>
           </div>
         </div>
-        <div id="cnpjField" class="field col-lg-6">
-          <div>
-            <label class="ts-18-medium ts-dark-gray" for="cnpj">CNPJ</label>
-          </div>
-          <div>
-            <input class="ts-14-medium" type="text" th:field="*{cpfOrCnpj}" id="cnpj" placeholder="00.000.000/0000-00">
-          </div>
+
+        <div class="field col-lg-6">
+          <label class="ts-18-medium ts-dark-gray" for="cpfOrCnpj">CPF/CNPJ</label>
+          <input type="text" class="ts-14-medium" id="cpfOrCnpj" th:field="*{cpfOrCnpj}" required/>
         </div>
       </div>
 

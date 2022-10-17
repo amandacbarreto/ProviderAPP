@@ -16,10 +16,6 @@ public class ProviderService {
     @Autowired
     private ProviderRepository providerRepository;
 
-    /*public List<Provider> findAll(){
-        return providerRepository.findAll();
-    }*/
-
     public List<ProviderResponseListDTO> findAll(){
         List<ProviderResponseListDTO> providerList = new ArrayList<>();
         ProviderResponseListDTO providerDTO = new ProviderResponseListDTO();
@@ -41,17 +37,19 @@ public class ProviderService {
     }
 
     public Provider insert (Provider provider) {
-        /*Provider newProvider = new Provider(
-                provider.getName(),
-                provider.getNameContact(),
-                provider.getEmailContact(),
-                provider.getPersonType(),
-                provider.getCpfOrCnpj(),
-                provider.getActivityDescription(),
-                provider.getAddress(),
-                provider.getPhoneList()
-        );*/
-        //return providerRepository.save(newProvider);
+        if (provider.getId().isEmpty()){
+            Provider newProvider = new Provider(
+                    provider.getName(),
+                    provider.getNameContact(),
+                    provider.getEmailContact(),
+                    provider.getPersonType(),
+                    provider.getCpfOrCnpj(),
+                    provider.getActivityDescription(),
+                    provider.getAddress(),
+                    provider.getPhoneList()
+            );
+            return providerRepository.save(newProvider);
+        }
         return providerRepository.save(provider);
     }
 
