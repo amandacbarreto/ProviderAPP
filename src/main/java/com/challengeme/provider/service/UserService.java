@@ -18,23 +18,23 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User findById(Long id){
+    public User findById(String id){
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
     }
 
-    public void deleteById(Long id){
+    public void deleteById(String id){
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
         userRepository.delete(user);
     }
 
     public User insert (UserDTO user) {
-        User newUser = new User(this.findAll().size()+1L, user.getName(), user.getEmail(), user.getPassword());
+        User newUser = new User(user.getName(), user.getEmail(), user.getPassword());
         return userRepository.insert(newUser);
     }
 
-    public User update (Long id, UserDTO userDTO){
+    public User update (String id, UserDTO userDTO){
         User user = this.findById(id);
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());

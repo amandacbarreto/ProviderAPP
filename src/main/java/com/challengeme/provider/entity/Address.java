@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Address {
 
     @Id
-    private Long id;
+    private String id;
     private String street;
     private String number;
     private String reference;
@@ -23,7 +23,7 @@ public class Address {
     public Address(){
     }
 
-    public Address(Long id, String street, String number, String reference, String complement, String neighborhood, String city, String state, String destinatary, String cep) {
+    public Address(String id, String street, String number, String reference, String complement, String neighborhood, String city, String state, String destinatary, String cep) {
         this.id = id;
         this.street = street;
         this.number = number;
@@ -36,11 +36,11 @@ public class Address {
         this.cep = cep;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

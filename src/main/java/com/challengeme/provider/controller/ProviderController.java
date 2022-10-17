@@ -1,19 +1,18 @@
 package com.challengeme.provider.controller;
 
+import com.challengeme.provider.dto.ProviderDTO;
 import com.challengeme.provider.dto.UserDTO;
 import com.challengeme.provider.entity.Address;
 import com.challengeme.provider.entity.Phone;
 import com.challengeme.provider.entity.Provider;
+import com.challengeme.provider.repository.ProviderRepository;
 import com.challengeme.provider.service.ProviderService;
 import com.challengeme.provider.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,6 +53,7 @@ public class ProviderController {
     @GetMapping("/fornecedores")
     public ModelAndView showProviderList() {
         ModelAndView mv = new ModelAndView("list-provider");
+        mv.addObject("providers", providerService.findAll());
         return mv;
     }
 
@@ -70,7 +70,7 @@ public class ProviderController {
     @RequestMapping(value = "provider", params = {"save"})
     private String addProvider(@ModelAttribute Provider provider, HttpServletResponse response) throws IOException {
         providerService.insert(provider);
-        return "redirect:/fornecedores/cadastrar";
+        return "redirect:/fornecedores";
     }
 
     @RequestMapping(value="provider", params={"addPhone"})
@@ -86,5 +86,25 @@ public class ProviderController {
         final Integer id = Integer.valueOf(req.getParameter("removePhone"));
         provider.getPhoneList().remove(id.intValue());
         return "register-provider";
+    }
+
+    @GetMapping("/fornecedores/editar/{id}")
+    public ModelAndView showUpdateForm(@PathVariable("id") String id) {
+        ModelAndView mv = new ModelAndView("register-provider");
+        Provider provider = providerService.findById(id);
+        mv.addObject("provider", provider);
+        return mv;
+    }
+    /*@PostMapping("/update/{id}")
+    public String updateProvider(@PathVariable("id") String id, Provider provider,
+                                 BindingResult result, Model model) {
+        providerService.update(id, provider);
+        return "redirect:/fornecedores";
+    }*/
+
+    @GetMapping("/fornecedores/deletar/{id}")
+    public String deleteProvider(@PathVariable("id") String id, Model model) {
+        providerService.deleteById(id);
+        return "redirect:/fornecedores";
     }
 }

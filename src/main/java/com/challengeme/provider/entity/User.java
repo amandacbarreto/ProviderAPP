@@ -1,6 +1,7 @@
 package com.challengeme.provider.entity;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
@@ -8,9 +9,11 @@ import java.util.Objects;
 @Document
 public class User {
 
+    @Transient
+    public static final String SEQUENCE_NAME = "users_sequence";
 
     @Id
-    private Long id;
+    private String id;
     private String name;
     private String email;
     private String password;
@@ -19,18 +22,17 @@ public class User {
 
     }
 
-    public User(Long id, String name, String email, String password) {
-        this.id = id;
+    public User(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

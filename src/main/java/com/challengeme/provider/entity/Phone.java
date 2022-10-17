@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Phone {
 
     @Id
-    private Long id;
+    private String id;
 
     private String contact;
     private Provider provider;
@@ -18,17 +18,17 @@ public class Phone {
 
     }
 
-    public Phone(Long id, String contact, Provider provider) {
+    public Phone(String id, String contact, Provider provider) {
         this.id = id;
         this.contact = contact;
         this.provider = provider;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

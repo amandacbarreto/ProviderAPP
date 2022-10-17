@@ -1,8 +1,9 @@
-package com.challengeme.provider.entity;
+package com.challengeme.provider.dto;
 
+import com.challengeme.provider.entity.Address;
+import com.challengeme.provider.entity.Phone;
 import com.challengeme.provider.enums.PersonType;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
@@ -10,10 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Document
-public class Provider {
-
-    @Id
-    private String id;
+public class ProviderDTO {
 
     private String name;
     private String nameContact;
@@ -24,11 +22,11 @@ public class Provider {
     private Address address;
     private List<Phone> phoneList = new ArrayList<>();
 
-    public Provider(){
+    public ProviderDTO(){
 
     }
 
-    public Provider(String name, String nameContact, String emailContact, PersonType personType, String cpfOrCnpj, String activityDescription, Address address, List<Phone> phoneList) {
+    public ProviderDTO(String name, String nameContact, String emailContact, PersonType personType, String cpfOrCnpj, String activityDescription, Address address, List<Phone> phoneList) {
         this.name = name;
         this.nameContact = nameContact;
         this.emailContact = emailContact;
@@ -37,14 +35,6 @@ public class Provider {
         this.activityDescription = activityDescription;
         this.address = address;
         this.phoneList = phoneList;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -111,16 +101,4 @@ public class Provider {
         this.phoneList = phoneList;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Provider provider = (Provider) o;
-        return Objects.equals(id, provider.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
 }
