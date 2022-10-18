@@ -1,5 +1,6 @@
 package com.challengeme.provider.service;
 
+import com.challengeme.provider.dto.ProviderDTO2;
 import com.challengeme.provider.dto.ProviderResponseListDTO;
 import com.challengeme.provider.entity.Provider;
 import com.challengeme.provider.repository.ProviderRepository;
@@ -15,9 +16,9 @@ public class ProviderService {
     @Autowired
     private ProviderRepository providerRepository;
 
-    public List<ProviderResponseListDTO> findAll(){
-        List<ProviderResponseListDTO> providerList = new ArrayList<>();
-        ProviderResponseListDTO providerDTO = new ProviderResponseListDTO();
+    public List<ProviderDTO2> findAll(){
+        List<ProviderDTO2> providerList = new ArrayList<>();
+        ProviderDTO2 providerDTO = new ProviderDTO2();
         for (Provider provider: providerRepository.findAll()){
             providerList.add(providerDTO.convertProviderToDTO(provider));
         }

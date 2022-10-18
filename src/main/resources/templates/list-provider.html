@@ -74,8 +74,8 @@
                 <td th:text="${provider.emailContact}">E-mail Contato Principal</th>
                 <td th:text="${provider.cpfOrCnpj}">CPF/CNPJ</th>
                 <td th:text="${provider.activityDescription}">Atividade</th>
-                <td th:text="${provider.address}">Endereço</th>
-                <td th:text="${provider.phoneList}">Telefone(s)</th>
+                <td th:text="${provider.shortAddress}">Endereço</th>
+                <td th:text="${provider.shortPhoneList}">Telefone(s)</th>
                 <td>
                     <a th:href="@{/fornecedores/editar/{id}(id=${provider.id})}">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#001940"><path d="M0 0h24v24H0z" fill="none"/><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>                </td>
