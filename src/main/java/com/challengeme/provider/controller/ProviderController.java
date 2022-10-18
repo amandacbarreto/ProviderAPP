@@ -13,7 +13,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 
 @Controller
 @RequestMapping()
@@ -24,6 +23,9 @@ public class ProviderController {
 
     @Autowired
     private ProviderService providerService;
+
+    private static final String REGISTER_PROVIDER = "register-provider";
+    private static final ModelAndView REGISTER_PROVIDER_MV = new ModelAndView(REGISTER_PROVIDER);
 
     @GetMapping
     @RequestMapping("/")
@@ -39,8 +41,7 @@ public class ProviderController {
 
     @GetMapping("/cadastro")
     public ModelAndView showRegistrationForm(UserDTO userDTO) {
-        ModelAndView mv = new ModelAndView("registration");
-        return mv;
+        return new ModelAndView("registration");
     }
 
     @PostMapping("/adduser")
@@ -68,16 +69,15 @@ public class ProviderController {
 
     @GetMapping("/fornecedores/cadastrar")
     public ModelAndView showProviderRegister() {
-        ModelAndView mv = new ModelAndView("register-provider");
         Provider newProvider = new Provider();
         newProvider.getPhoneList().add(new Phone());
         newProvider.setAddress(new Address());
-        mv.addObject("provider", newProvider);
-        return mv;
+        REGISTER_PROVIDER_MV.addObject("provider", newProvider);
+        return REGISTER_PROVIDER_MV;
     }
 
     @RequestMapping(value = "provider", params = {"save"})
-    private String addProvider(@ModelAttribute Provider provider, HttpServletResponse response) throws IOException {
+    public String addProvider(@ModelAttribute Provider provider, HttpServletResponse response) {
         providerService.insert(provider);
         return "redirect:/fornecedores";
     }
@@ -85,24 +85,23 @@ public class ProviderController {
     @RequestMapping(value="provider", params={"addPhone"})
     public String addPhone(Provider provider, BindingResult bindingResult) {
         provider.getPhoneList().add(new Phone());
-        return "register-provider";
+        return REGISTER_PROVIDER;
     }
 
     @RequestMapping(value="provider", params={"removePhone"})
     public String removePhone(
             final Provider provider, final BindingResult bindingResult,
             final HttpServletRequest req) {
-        final Integer id = Integer.valueOf(req.getParameter("removePhone"));
+        final Integer id = Integer.parseInt(req.getParameter("removePhone"));
         provider.getPhoneList().remove(id.intValue());
-        return "register-provider";
+        return REGISTER_PROVIDER;
     }
 
     @GetMapping("/fornecedores/editar/{id}")
     public ModelAndView showUpdateForm(@PathVariable("id") String id) {
-        ModelAndView mv = new ModelAndView("register-provider");
         Provider provider = providerService.findById(id);
-        mv.addObject("provider", provider);
-        return mv;
+        REGISTER_PROVIDER_MV.addObject("provider", provider);
+        return REGISTER_PROVIDER_MV;
     }
 
     @GetMapping("/fornecedores/deletar/{id}")

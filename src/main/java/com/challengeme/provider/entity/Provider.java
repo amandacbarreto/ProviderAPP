@@ -2,7 +2,6 @@ package com.challengeme.provider.entity;
 
 import com.challengeme.provider.enums.PersonType;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;

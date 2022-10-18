@@ -117,29 +117,29 @@ public class ProviderResponseListDTO {
         providerDto.personType = provider.getPersonType();
         providerDto.cpfOrCnpj = provider.getCpfOrCnpj();
         providerDto.activityDescription = provider.getActivityDescription();
-        StringBuilder address = new StringBuilder();
+        StringBuilder newAddress = new StringBuilder();
         Address addressProvider = provider.getAddress();
-        address.append(addressProvider.getStreet());
-        address.append(", ");
-        address.append(addressProvider.getNumber());
+        newAddress.append(addressProvider.getStreet());
+        newAddress.append(", ");
+        newAddress.append(addressProvider.getNumber());
         if (!addressProvider.getReference().isEmpty()){
-            address.append(", ");
-            address.append(addressProvider.getReference());
+            newAddress.append(", ");
+            newAddress.append(addressProvider.getReference());
         }
         if (!addressProvider.getComplement().isEmpty()){
-            address.append(", ");
-            address.append(addressProvider.getComplement());
+            newAddress.append(", ");
+            newAddress.append(addressProvider.getComplement());
         }
-        address.append(", ");
-        address.append(addressProvider.getNeighborhood());
-        address.append(". CEP: ");
-        address.append(addressProvider.getCep());
-        address.append(". ");
-        address.append(addressProvider.getCity());
-        address.append("-");
-        address.append(addressProvider.getState());
-        address.append(". ");
-        providerDto.address = address.toString();
+        newAddress.append(", ");
+        newAddress.append(addressProvider.getNeighborhood());
+        newAddress.append(". CEP: ");
+        newAddress.append(addressProvider.getCep());
+        newAddress.append(". ");
+        newAddress.append(addressProvider.getCity());
+        newAddress.append("-");
+        newAddress.append(addressProvider.getState());
+        newAddress.append(". ");
+        providerDto.address = newAddress.toString();
         StringBuilder phones = new StringBuilder();
         for (Phone phone: provider.getPhoneList()) {
             phones.append(phone.getContact());

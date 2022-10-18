@@ -21,7 +21,6 @@ public class ProviderDTO {
     private List<Phone> phoneList = new ArrayList<>();
 
     public ProviderDTO(){
-
     }
 
     public ProviderDTO(String name, String nameContact, String emailContact, PersonType personType, String cpfOrCnpj, String activityDescription, Address address, List<Phone> phoneList) {
