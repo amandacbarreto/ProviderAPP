@@ -18,7 +18,7 @@
     </header>
 <div class="offcanvas offcanvas-start ts-white" tabindex="-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel">
     <div class="offcanvas-header">
-        <h2 class="offcanvas-title ts-32-black" id="offcanvasLeftLabel">Desafio 3</h2>
+        <h2 class="offcanvas-title ts-32-black" id="offcanvasLeftLabel">DESAFIO 3</h2>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body ts-18-medium">
@@ -33,9 +33,12 @@
             <ul>
                 <a href="/fornecedores/cadastrar">Novo fornecedor</a>
             </ul>
-            <ul class="user-logout">
-                <a href="/">Sair</a>
-            </ul>
+            <!--<ul class="user-logout">
+                <a th:action="@{/sair}">Sair</a>
+            </ul>-->
+            <form th:action="@{/logout}" method="post" class="user-logout">
+                <input type="submit" value="Sair" />
+            </form>
         </li>
     </div>
 </div>

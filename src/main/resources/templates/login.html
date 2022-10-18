@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,17 +12,18 @@
 </head>
 <body class="landing-page">
     <div class="login-window">
-        <h1 class="ts-32-black ts-black">Desafio 3</h1>
+        <h1 class="ts-32-black ts-black">DESAFIO 3</h1>
 
         <div>
             <h2 class="ts-24-bold ts-black">Login</h2>
             <p class="ts-18-light ts-black">Preecha os campos abaixo para acessar sua conta</p>
         </div>
-        <form action="#" method="post">
+        <p th:if="${loginError}" class="ts-red ts-20-black">Wrong user or password</p>
+        <form th:action="@{/}" method="post">
             <label class="ts-18-medium ts-dark-gray" for="email">E-mail</label>
-            <input class="ts-14-medium" type="email"id="email" placeholder="E-mail">
+            <input class="ts-14-medium" type="email" name="email" id="email" placeholder="E-mail">
             <label class="ts-18-medium ts-dark-gray" for="password">Senha</label>
-            <input class="ts-14-medium" type="password" id="password" placeholder="Senha">
+            <input class="ts-14-medium" type="password" name="password" id="password" placeholder="Senha">
             <input  class="ts-24-bold ts-white" type="submit" value="Acessar">
         </form>
         <p class="ts-14-light ts-black">Não possui conta? <a href="/cadastro" class="ts-14-medium ts-dark-blue">Crie uma aqui</a></p>

@@ -2,13 +2,15 @@ package com.challengeme.provider.controller;
 
 import com.challengeme.provider.dto.ProviderDTO;
 import com.challengeme.provider.dto.UserDTO;
-import com.challengeme.provider.entity.Address;
-import com.challengeme.provider.entity.Phone;
-import com.challengeme.provider.entity.Provider;
+import com.challengeme.provider.entity.*;
 import com.challengeme.provider.repository.ProviderRepository;
 import com.challengeme.provider.service.ProviderService;
 import com.challengeme.provider.service.UserService;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,10 +31,16 @@ public class ProviderController {
     @Autowired
     private ProviderService providerService;
 
-    @GetMapping("")
-    public ModelAndView showLoginForm() {
-        ModelAndView mv = new ModelAndView("login");
-        return mv;
+    @GetMapping
+    @RequestMapping("/")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping("/login-error")
+    public String loginError(Model model) {
+        model.addAttribute("loginError", true);
+        return "login";
     }
 
     @GetMapping("/cadastro")
@@ -47,7 +55,7 @@ public class ProviderController {
             return "registration";
         }
         userService.insert(userDTO);
-        return "redirect:/fornecedores";
+        return "redirect:/";
     }
 
     @GetMapping("/fornecedores")
@@ -95,12 +103,6 @@ public class ProviderController {
         mv.addObject("provider", provider);
         return mv;
     }
-    /*@PostMapping("/update/{id}")
-    public String updateProvider(@PathVariable("id") String id, Provider provider,
-                                 BindingResult result, Model model) {
-        providerService.update(id, provider);
-        return "redirect:/fornecedores";
-    }*/
 
     @GetMapping("/fornecedores/deletar/{id}")
     public String deleteProvider(@PathVariable("id") String id, Model model) {

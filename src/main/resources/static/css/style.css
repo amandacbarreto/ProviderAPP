@@ -19,6 +19,7 @@ body{
     --light-gray: #CDCDCD;
     --lighter-gray: #E5E5E5;
     --white: #FFFFFF;
+    --red: #DB2B39;
 }
 
     /*  Fonts */
@@ -124,6 +125,10 @@ body{
 
 .ts-white {
     color: var(--white);
+}
+
+.ts-red {
+    color: var(--red);
 }
 
     /*  Register */
@@ -274,6 +279,29 @@ header{
 
 .user-logout{
     margin-top: 4rem;
+}
+
+.user-logout input[type=submit]{
+    text-decoration: none;
+    background: none;
+    display: flex;
+    height: 4rem;
+    padding: .8rem;
+    width: 100%;
+    text-align: left;
+    color: var(--white);
+    width: 100%;
+    border: none;
+}
+
+.user-logout input[type=submit]:hover{
+    text-decoration: none;
+    background-color: var(--white);
+    width: 100%;
+    height: 4rem;
+    padding: .8rem;
+    border-radius: 0.4rem;
+    color: var(--dark-blue);
 }
 
     /* Provider list page */
