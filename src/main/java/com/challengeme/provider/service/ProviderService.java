@@ -1,7 +1,6 @@
 package com.challengeme.provider.service;
 
-import com.challengeme.provider.dto.ProviderDTO2;
-import com.challengeme.provider.dto.ProviderResponseListDTO;
+import com.challengeme.provider.dto.ProviderDTO;
 import com.challengeme.provider.entity.Provider;
 import com.challengeme.provider.repository.ProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,9 @@ public class ProviderService {
     @Autowired
     private ProviderRepository providerRepository;
 
-    public List<ProviderDTO2> findAll(){
-        List<ProviderDTO2> providerList = new ArrayList<>();
-        ProviderDTO2 providerDTO = new ProviderDTO2();
+    public List<ProviderDTO> findAll(){
+        List<ProviderDTO> providerList = new ArrayList<>();
+        ProviderDTO providerDTO = new ProviderDTO();
         for (Provider provider: providerRepository.findAll()){
             providerList.add(providerDTO.convertProviderToDTO(provider));
         }
