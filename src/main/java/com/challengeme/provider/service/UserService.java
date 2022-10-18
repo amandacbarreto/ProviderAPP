@@ -40,10 +40,7 @@ public class UserService{
     }
 
     public Boolean isNewUser(UserDTO user){
-        if (userRepository.findByEmail(user.getEmail())==null){
-            return true;
-        }
-        return false;
+        return userRepository.findByEmail(user.getEmail())==null;
     }
 
     public User update (String id, UserDTO userDTO){
