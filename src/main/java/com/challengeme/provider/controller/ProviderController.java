@@ -45,7 +45,7 @@ public class ProviderController {
 
     @PostMapping("/adduser")
     public String addUser(UserDTO userDTO, BindingResult result, Model model) {
-        if(userService.isNewUser(userDTO)){
+        if(Boolean.TRUE.equals(userService.isNewUser(userDTO))){
             userService.insert(userDTO);
             return "redirect:/";
         } else {
