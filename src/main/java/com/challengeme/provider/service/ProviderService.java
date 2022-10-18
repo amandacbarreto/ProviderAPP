@@ -1,6 +1,5 @@
 package com.challengeme.provider.service;
 
-import com.challengeme.provider.dto.ProviderDTO;
 import com.challengeme.provider.dto.ProviderResponseListDTO;
 import com.challengeme.provider.entity.Provider;
 import com.challengeme.provider.repository.ProviderRepository;

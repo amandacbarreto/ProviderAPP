@@ -3,12 +3,10 @@ package com.challengeme.provider.dto;
 import com.challengeme.provider.entity.Address;
 import com.challengeme.provider.entity.Phone;
 import com.challengeme.provider.enums.PersonType;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Document
 public class ProviderDTO {
