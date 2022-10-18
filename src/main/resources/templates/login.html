@@ -18,7 +18,7 @@
             <h2 class="ts-24-bold ts-black">Login</h2>
             <p class="ts-18-light ts-black">Preecha os campos abaixo para acessar sua conta</p>
         </div>
-        <p th:if="${loginError}" class="ts-red ts-20-black">Wrong user or password</p>
+        <p th:if="${loginError}" class="ts-red ts-20-black">E-mail ou senha errados</p>
         <form th:action="@{/}" method="post">
             <label class="ts-18-medium ts-dark-gray" for="email">E-mail</label>
             <input class="ts-14-medium" type="email" name="email" id="email" placeholder="E-mail">

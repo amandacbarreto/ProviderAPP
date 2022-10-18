@@ -20,8 +20,6 @@ public class UserService{
     @Autowired
     private UserRepository userRepository;
 
-
-
     private BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -44,6 +42,13 @@ public class UserService{
     public User insert (UserDTO user) {
         User newUser = new User(user.getName(), user.getEmail(), passwordEncoder().encode(user.getPassword()));
         return userRepository.insert(newUser);
+    }
+
+    public Boolean isNewUser(UserDTO user){
+        if (userRepository.findByEmail(user.getEmail())==null){
+            return true;
+        }
+        return false;
     }
 
     public User update (String id, UserDTO userDTO){

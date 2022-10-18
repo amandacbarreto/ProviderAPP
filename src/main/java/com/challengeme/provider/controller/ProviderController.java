@@ -1,16 +1,10 @@
 package com.challengeme.provider.controller;
 
-import com.challengeme.provider.dto.ProviderDTO;
 import com.challengeme.provider.dto.UserDTO;
 import com.challengeme.provider.entity.*;
-import com.challengeme.provider.repository.ProviderRepository;
 import com.challengeme.provider.service.ProviderService;
 import com.challengeme.provider.service.UserService;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.context.SecurityContextHolderFilter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -51,11 +45,18 @@ public class ProviderController {
 
     @PostMapping("/adduser")
     public String addUser(UserDTO userDTO, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "registration";
+        if(userService.isNewUser(userDTO)){
+            userService.insert(userDTO);
+            return "redirect:/";
+        } else {
+            return "redirect:/registration-error";
         }
-        userService.insert(userDTO);
-        return "redirect:/";
+    }
+
+    @RequestMapping("/registration-error")
+    public String registrationError(Model model, UserDTO userDTO) {
+        model.addAttribute("registrationError", true);
+        return "registration";
     }
 
     @GetMapping("/fornecedores")

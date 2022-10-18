@@ -17,6 +17,7 @@
             <h2 class="ts-24-bold ts-black">Cadastro</h2>
             <p class="ts-18-light ts-black">Preecha os campos abaixo para criar uma conta</p>
         </div>
+        <p th:if="${registrationError}" class="ts-red ts-20-black">E-mail já cadastrado</p>
         <form th:action="@{/adduser}" th:object="${userDTO}" method="post" onsubmit ="return confirmPassword()">
             <label class="ts-18-medium ts-dark-gray" for="name">Nome</label>
             <input class="ts-14-medium" type="text" th:field="*{name}" id="name" placeholder="Nome" required>
