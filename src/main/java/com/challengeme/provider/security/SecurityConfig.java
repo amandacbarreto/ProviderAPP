@@ -10,11 +10,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+
+import static org.springframework.security.config.Customizer.withDefaults;
 
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig{
 
 
     @Bean
@@ -35,26 +38,27 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         return auth;
     }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(authenticationProvider());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/fornecedores", "/fornecedores/cadastrar").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
-                    .loginPage("/")
-                    .usernameParameter("email")
-                    .passwordParameter("password")
+                .loginPage("/")
+                .usernameParameter("email")
+                .passwordParameter("password")
                 .defaultSuccessUrl("/fornecedores")
                 .failureUrl("/login-error")
                 .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/").permitAll();
+        /*http
+                .authorizeHttpRequests((authz) -> authz
+                        .anyRequest().authenticated()
+                )
+                .httpBasic(withDefaults());*/
+        return http.build();
     }
 }
