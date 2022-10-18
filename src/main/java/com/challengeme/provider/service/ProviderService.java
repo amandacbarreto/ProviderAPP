@@ -35,21 +35,22 @@ public class ProviderService {
         providerRepository.delete(provider);
     }
 
-    public Provider insert (Provider provider) {
-        if (provider.getId().isEmpty()){
-            Provider newProvider = new Provider(
-                    provider.getName(),
-                    provider.getNameContact(),
-                    provider.getEmailContact(),
-                    provider.getPersonType(),
-                    provider.getCpfOrCnpj(),
-                    provider.getActivityDescription(),
-                    provider.getAddress(),
-                    provider.getPhoneList()
-            );
+    public Provider insert (ProviderDTO providerDTO) {
+        Provider newProvider = new Provider(
+                providerDTO.getName(),
+                providerDTO.getNameContact(),
+                providerDTO.getEmailContact(),
+                providerDTO.getPersonType(),
+                providerDTO.getCpfOrCnpj(),
+                providerDTO.getActivityDescription(),
+                providerDTO.getAddress(),
+                providerDTO.getPhoneList()
+        );
+        if (providerDTO.getId().isEmpty()){
             return providerRepository.save(newProvider);
         }
-        return providerRepository.save(provider);
+        newProvider.setId(providerDTO.getId());
+        return providerRepository.save(newProvider);
     }
 
     public Provider update (String id, Provider provider){

@@ -1,5 +1,6 @@
 package com.challengeme.provider.controller;
 
+import com.challengeme.provider.dto.ProviderDTO;
 import com.challengeme.provider.dto.UserDTO;
 import com.challengeme.provider.entity.*;
 import com.challengeme.provider.service.ProviderService;
@@ -77,19 +78,19 @@ public class ProviderController {
     }
 
     @RequestMapping(value = "provider", params = {"save"})
-    public String addProvider(@ModelAttribute Provider provider, HttpServletResponse response) {
+    public String addProvider(@ModelAttribute ProviderDTO provider, HttpServletResponse response) {
         providerService.insert(provider);
         return "redirect:/fornecedores";
     }
 
-    @RequestMapping(value="provider", params={"addPhone"})
-    public String addPhone(Provider provider, BindingResult bindingResult) {
+    @RequestMapping(value="/provider", params={"addPhone"})
+    public String addRow(final Provider provider, final BindingResult bindingResult) {
         provider.getPhoneList().add(new Phone());
         return REGISTER_PROVIDER;
     }
 
-    @RequestMapping(value="provider", params={"removePhone"})
-    public String removePhone(
+    @RequestMapping(value="/provider", params={"removePhone"})
+    public String removeRow(
             final Provider provider, final BindingResult bindingResult,
             final HttpServletRequest req) {
         final Integer id = Integer.parseInt(req.getParameter("removePhone"));
