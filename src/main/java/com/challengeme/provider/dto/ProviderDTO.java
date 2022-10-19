@@ -4,12 +4,10 @@ import com.challengeme.provider.entity.Address;
 import com.challengeme.provider.entity.Phone;
 import com.challengeme.provider.entity.Provider;
 import com.challengeme.provider.enums.PersonType;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Document
 public class ProviderDTO {
 
     private String id;

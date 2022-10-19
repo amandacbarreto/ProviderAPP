@@ -84,14 +84,14 @@ public class ProviderController {
     }
 
     @RequestMapping(value="/provider", params={"addPhone"})
-    public String addRow(final Provider provider, final BindingResult bindingResult) {
+    public String addRow(final ProviderDTO provider, final BindingResult bindingResult) {
         provider.getPhoneList().add(new Phone());
         return REGISTER_PROVIDER;
     }
 
     @RequestMapping(value="/provider", params={"removePhone"})
     public String removeRow(
-            final Provider provider, final BindingResult bindingResult,
+            final ProviderDTO provider, final BindingResult bindingResult,
             final HttpServletRequest req) {
         final Integer id = Integer.parseInt(req.getParameter("removePhone"));
         provider.getPhoneList().remove(id.intValue());
