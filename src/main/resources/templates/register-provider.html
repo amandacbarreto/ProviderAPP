@@ -45,9 +45,13 @@
       maskCpfCnpj.start();
     });
 
+    $(document).on("focus", ".tel_fone", function() {
+      $(this).mask('(00) 00000-0000', {reverse: true});
+    });
+
+
     $(document).ready(function () {
       $("#cep").mask('00.000-000', {reverse: true});
-      $("#phone").mask('00 00000-0000', {reverse: true});
     });
 
     $(document).ready(function() {
@@ -289,7 +293,7 @@
           <tbody>
             <tr th:each="phone, list : *{phoneList}">
               <td class="ts-14-medium" th:text="${list.count}">1</td>
-              <td><input class="ts-14-medium phone-input" id="phone" type="text" th:field="*{phoneList[__${list.index}__].contact}" required/></td>
+              <td><input class="ts-14-medium phone-input tel_fone" id="phone" type="text" th:field="*{phoneList[__${list.index}__].contact}" required/></td>
               <td>
                 <button type="submit" class="btn-phone ts-18-medium ts-white" th:value="${list.index}" th:name="removePhone">
                   Remover telefone
