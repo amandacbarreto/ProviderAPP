@@ -10,28 +10,28 @@ public class Address {
 
     @Id
     private String id;
-    private String street;
+    private String logradouro;
     private String number;
     private String reference;
     private String complement;
-    private String neighborhood;
-    private String city;
-    private String state;
+    private String bairro;
+    private String localidade;
+    private String uf;
     private String destinatary;
     private String cep;
 
     public Address(){
     }
 
-    public Address(String id, String street, String number, String reference, String complement, String neighborhood, String city, String state, String destinatary, String cep) {
+    public Address(String id, String logradouro, String number, String reference, String complement, String bairro, String localidade, String uf, String destinatary, String cep) {
         this.id = id;
-        this.street = street;
+        this.logradouro = logradouro;
         this.number = number;
         this.reference = reference;
         this.complement = complement;
-        this.neighborhood = neighborhood;
-        this.city = city;
-        this.state = state;
+        this.bairro = bairro;
+        this.localidade = localidade;
+        this.uf = uf;
         this.destinatary = destinatary;
         this.cep = cep;
     }
@@ -44,12 +44,12 @@ public class Address {
         this.id = id;
     }
 
-    public String getStreet() {
-        return street;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
     public String getNumber() {
@@ -76,28 +76,28 @@ public class Address {
         this.complement = complement;
     }
 
-    public String getNeighborhood() {
-        return neighborhood;
+    public String getBairro() {
+        return bairro;
     }
 
-    public void setNeighborhood(String neighborhood) {
-        this.neighborhood = neighborhood;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
-    public String getCity() {
-        return city;
+    public String getLocalidade() {
+        return localidade;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocalidade(String localidade) {
+        this.localidade = localidade;
     }
 
-    public String getState() {
-        return state;
+    public String getUf() {
+        return uf;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 
     public String getDestinatary() {

@@ -118,7 +118,7 @@ public class ProviderDTO {
     public void setShortAddress() {
         StringBuilder newAddress = new StringBuilder();
         Address addressProvider = this.getAddress();
-        newAddress.append(addressProvider.getStreet());
+        newAddress.append(addressProvider.getLogradouro());
         newAddress.append(", ");
         newAddress.append(addressProvider.getNumber());
         if (!addressProvider.getReference().isEmpty()){
@@ -130,13 +130,13 @@ public class ProviderDTO {
             newAddress.append(addressProvider.getComplement());
         }
         newAddress.append(", ");
-        newAddress.append(addressProvider.getNeighborhood());
+        newAddress.append(addressProvider.getBairro());
         newAddress.append(". CEP: ");
         newAddress.append(addressProvider.getCep());
         newAddress.append(". ");
-        newAddress.append(addressProvider.getCity());
+        newAddress.append(addressProvider.getLocalidade());
         newAddress.append("-");
-        newAddress.append(addressProvider.getState());
+        newAddress.append(addressProvider.getUf());
         newAddress.append(". ");
         this.shortAddress = newAddress.toString();
     }

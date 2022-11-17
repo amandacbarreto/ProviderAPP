@@ -54,6 +54,8 @@
       $("#cep").mask('00.000-000', {reverse: true});
     });
 
+    /* SOLUÇÃO ANTERIOR - CONSULTA DIRETA AO VIACEP
+
     $(document).ready(function() {
 
       function clean_address_form() {
@@ -111,6 +113,57 @@
         else {
           //cep not informed, clean form.
           clean_address_form();
+        }
+      });
+    });*/
+
+    $(document).ready(function(){
+
+      function fill_form(value) {
+        $("#street").val(value);
+        $("#neighborhood").val(value);
+        $("#city").val(value);
+        $("#state").val(value);
+      }
+
+      function empty_form() {
+        fill_form("");
+      }
+
+      function querying_form() {
+        fill_form("...");
+      }
+
+
+      $("#cep").blur(function(){
+
+        var cep = $(this).val().replace(/\D/g, '');
+        var validatecep = /^[0-9]{8}$/;
+        if(validatecep.test(cep)) {
+
+          querying_form();
+
+          if (cep) {
+            $.ajax({
+              url: "/searchCEP/" + cep,
+              type: "GET",
+              success: [function (responseText) {
+                if (responseText.logradouro) {
+                  $('#street').val(responseText.logradouro);
+                  $("#neighborhood").val(responseText.bairro);
+                  $("#city").val(responseText.localidade);
+                  $("#state").val(responseText.uf);
+                  $("#number").focus();
+                } else {
+                  empty_form();
+                  alert("CEP não encontrado.");
+                }
+              }],
+            });
+          } else {
+            empty_form();
+            alert("Formato de CEP inválido.");
+          }
         }
       });
     });
@@ -216,7 +269,7 @@
       <div class="row">
         <div class="field col-lg-8">
           <label class="ts-18-medium ts-dark-gray" for="street">Logradouro</label>
-          <input class="ts-14-medium" type="text" th:field="*{address.street}" id="street" placeholder="Logradouro" required>
+          <input class="ts-14-medium" type="text" th:field="*{address.logradouro}" id="street" placeholder="Logradouro" required>
         </div>
 
         <div class="field col-lg-4">
@@ -240,17 +293,17 @@
       <div class="row">
         <div class="field col-lg-5">
           <label class="ts-18-medium ts-dark-gray" for="neighborhood">Bairro</label>
-          <input class="ts-14-medium" type="text" th:field="*{address.neighborhood}" id="neighborhood" placeholder="Bairro" required>
+          <input class="ts-14-medium" type="text" th:field="*{address.bairro}" id="neighborhood" placeholder="Bairro" required>
         </div>
 
         <div class="field col-lg-5">
           <label class="ts-18-medium ts-dark-gray" for="city">Cidade</label>
-          <input class="ts-14-medium" type="text" th:field="*{address.city}" id="city" placeholder="Cidade" required>
+          <input class="ts-14-medium" type="text" th:field="*{address.localidade}" id="city" placeholder="Cidade" required>
         </div>
 
         <div class="field col-lg-2">
           <label class="ts-18-medium ts-dark-gray" for="state">Estado</label>
-          <input class="ts-14-medium" type="text" th:field="*{address.state}" id="state" placeholder="Estado" required>
+          <input class="ts-14-medium" type="text" th:field="*{address.uf}" id="state" placeholder="Estado" required>
         </div>
       </div>
 
